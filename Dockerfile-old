@@ -1,0 +1,17 @@
+# Install dependencies and build our static site
+FROM node:alpine as builder
+RUN apk update
+RUN apk add python
+RUN apk add build-base
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn config set registry http://everest-npm-registry.com/
+COPY . .
+RUN yarn install
+RUN yarn build
+
+# Serve our static site with nginx
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/build /usr/share/nginx/html
+EXPOSE 3003

@@ -1,0 +1,1197 @@
+{
+  "mock": {
+    "discoveryProfile": {
+      "clients": [
+        {
+          "id": "client_2",
+          "response": [
+            {
+              "tenant": 1,
+              "uniqueId": "51b5ce80-6122-4123-a790-17872fb7a0bb",
+              "resourceType": "System",
+              "resource": "1",
+              "name": "Public Cloud Rescan",
+              "type": "JOB_EXECUTION",
+              "status": "QUEUED",
+              "target": "test12",
+              "message": "Initiated",
+              "user": "narendar Baddam",
+              "requestedTime": 1599217904564,
+              "startTime": 0,
+              "endTime": 0,
+              "infoMap": {
+                "percentageComplete": "0"
+              },
+              "requestedDate": 1599217904564
+            }
+          ]
+        }
+      ]
+    },
+    "onboardStatus": {
+      "clients": [
+        {
+          "id": "client_2",
+          "response": [
+            {
+              "id": "DNM",
+              "state": "CANCELLED",
+              "installedIntegrations": [
+                {
+                  "id": "KUBERNETES",
+                  "name": "Kubernetes"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "client_1",
+          "response": [
+            {
+              "id": "DNM",
+              "state": "NEW",
+              "installedIntegrations": []
+            }
+          ]
+        }
+      ]
+    },
+    "installedIntegrations": {
+      "clients": [
+        {
+          "id": "client_2",
+          "result": {
+            "data": {
+              "results": [
+                {
+                  "id": "INTG-09623113-d32e-48eb-8993-5ccfa0e742b1",
+                  "displayName": "test12",
+                  "integration": {
+                    "id": "AWS",
+                    "name": "AWS",
+                    "multipleInstallations": true
+                  },
+                  "credential": {
+                    "Name": "test12 AWS Integration",
+                    "autoMonitorable": true,
+                    "AccountNumber": "320444959714",
+                    "AWSType": "IAM",
+                    "Regions": "af-south-1"
+                  },
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T16:41:43+0530",
+                  "discoveryProfiles": [
+                    {
+                      "policy": {
+                        "name": "AWS_test12",
+                        "entityType": "ALL",
+                        "matchType": "ANY",
+                        "rules": [
+                          {
+                            "filterType": "ANY_CLOUD_RESOURCE"
+                          }
+                        ],
+                        "actions": [
+                          {
+                            "action": "MANAGE DEVICE"
+                          }
+                        ]
+                      },
+                      "id": 673,
+                      "discoveryStatusUid": "51b5ce80-6122-4123-a790-17872fb7a0bb",
+                      "scanNow": false
+                    }
+                  ],
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-c3904e7a-e95a-4306-a802-58e519caf08e",
+                  "displayName": "test",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c3904e7a-e95a-4306-a802-58e519caf08e/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c3904e7a-e95a-4306-a802-58e519caf08e/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c3904e7a-e95a-4306-a802-58e519caf08e/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c3904e7a-e95a-4306-a802-58e519caf08e/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T15:31:57+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-e68e034c-e720-4a30-a4a9-9f0cd335e4b9",
+                  "displayName": "test099",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-e68e034c-e720-4a30-a4a9-9f0cd335e4b9/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-e68e034c-e720-4a30-a4a9-9f0cd335e4b9/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-e68e034c-e720-4a30-a4a9-9f0cd335e4b9/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-e68e034c-e720-4a30-a4a9-9f0cd335e4b9/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T13:44:15+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-c30b3143-bae2-443d-899d-a85851e8280c",
+                  "displayName": "test12",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c30b3143-bae2-443d-899d-a85851e8280c/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c30b3143-bae2-443d-899d-a85851e8280c/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c30b3143-bae2-443d-899d-a85851e8280c/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c30b3143-bae2-443d-899d-a85851e8280c/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T12:45:43+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-b0abea54-f617-4e65-8ae4-848f9750b50b",
+                  "displayName": "test123q",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-b0abea54-f617-4e65-8ae4-848f9750b50b/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-b0abea54-f617-4e65-8ae4-848f9750b50b/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-b0abea54-f617-4e65-8ae4-848f9750b50b/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-b0abea54-f617-4e65-8ae4-848f9750b50b/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T15:52:58+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-8639a7e3-0693-4084-9fc9-acdb8be8e5e5",
+                  "displayName": "test17",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-8639a7e3-0693-4084-9fc9-acdb8be8e5e5/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-8639a7e3-0693-4084-9fc9-acdb8be8e5e5/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-8639a7e3-0693-4084-9fc9-acdb8be8e5e5/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-8639a7e3-0693-4084-9fc9-acdb8be8e5e5/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-11T11:23:11+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-2472c995-0976-42dd-8511-162045901660",
+                  "displayName": "test2",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-2472c995-0976-42dd-8511-162045901660/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-2472c995-0976-42dd-8511-162045901660/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-2472c995-0976-42dd-8511-162045901660/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-2472c995-0976-42dd-8511-162045901660/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-02T12:49:58+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-f0a923a5-808c-424b-9eb3-e6b44ec7c6f0",
+                  "displayName": "test221",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-f0a923a5-808c-424b-9eb3-e6b44ec7c6f0/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-f0a923a5-808c-424b-9eb3-e6b44ec7c6f0/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-f0a923a5-808c-424b-9eb3-e6b44ec7c6f0/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-f0a923a5-808c-424b-9eb3-e6b44ec7c6f0/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-11T11:46:17+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-3ce45b43-3d08-4ea3-970c-96fa92e7624b",
+                  "displayName": "test232",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-3ce45b43-3d08-4ea3-970c-96fa92e7624b/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-3ce45b43-3d08-4ea3-970c-96fa92e7624b/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-3ce45b43-3d08-4ea3-970c-96fa92e7624b/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-3ce45b43-3d08-4ea3-970c-96fa92e7624b/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T16:14:02+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-c9f8589b-3014-4f57-bc7e-d242e96484b4",
+                  "displayName": "test3",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c9f8589b-3014-4f57-bc7e-d242e96484b4/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c9f8589b-3014-4f57-bc7e-d242e96484b4/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c9f8589b-3014-4f57-bc7e-d242e96484b4/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-c9f8589b-3014-4f57-bc7e-d242e96484b4/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-02T13:52:03+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-99a1603b-dfca-412c-a3a9-8c9694755f20",
+                  "displayName": "test33",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-99a1603b-dfca-412c-a3a9-8c9694755f20/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-99a1603b-dfca-412c-a3a9-8c9694755f20/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-99a1603b-dfca-412c-a3a9-8c9694755f20/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-99a1603b-dfca-412c-a3a9-8c9694755f20/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T12:43:04+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-ee58f631-4d2a-476f-abe8-5cace93e77a0",
+                  "displayName": "test3333",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-ee58f631-4d2a-476f-abe8-5cace93e77a0/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-ee58f631-4d2a-476f-abe8-5cace93e77a0/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-ee58f631-4d2a-476f-abe8-5cace93e77a0/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-ee58f631-4d2a-476f-abe8-5cace93e77a0/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T15:47:22+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-4cb73bfd-b9b1-43cb-8804-6dae5cb61941",
+                  "displayName": "test34341",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-4cb73bfd-b9b1-43cb-8804-6dae5cb61941/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-4cb73bfd-b9b1-43cb-8804-6dae5cb61941/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-4cb73bfd-b9b1-43cb-8804-6dae5cb61941/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-4cb73bfd-b9b1-43cb-8804-6dae5cb61941/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T18:19:17+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-395172ea-61c6-4c76-8939-761129ea0e4f",
+                  "displayName": "test44",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-395172ea-61c6-4c76-8939-761129ea0e4f/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-395172ea-61c6-4c76-8939-761129ea0e4f/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-395172ea-61c6-4c76-8939-761129ea0e4f/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-395172ea-61c6-4c76-8939-761129ea0e4f/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-11T11:00:10+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-a2aec2e1-0d0b-49d7-9887-d8a99565296f",
+                  "displayName": "test455",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-a2aec2e1-0d0b-49d7-9887-d8a99565296f/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-a2aec2e1-0d0b-49d7-9887-d8a99565296f/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-a2aec2e1-0d0b-49d7-9887-d8a99565296f/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-a2aec2e1-0d0b-49d7-9887-d8a99565296f/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T13:33:39+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-d6cb7169-b729-447a-9ea1-43749a5da603",
+                  "displayName": "test4r",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-d6cb7169-b729-447a-9ea1-43749a5da603/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-d6cb7169-b729-447a-9ea1-43749a5da603/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-d6cb7169-b729-447a-9ea1-43749a5da603/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-d6cb7169-b729-447a-9ea1-43749a5da603/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T12:23:45+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-acb21404-7b91-4684-a8a8-bb3a61f59675",
+                  "displayName": "test5",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-acb21404-7b91-4684-a8a8-bb3a61f59675/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-acb21404-7b91-4684-a8a8-bb3a61f59675/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-acb21404-7b91-4684-a8a8-bb3a61f59675/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-acb21404-7b91-4684-a8a8-bb3a61f59675/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-11T08:35:44+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-953be553-aec4-4f0f-8ccb-428280320964",
+                  "displayName": "test55",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-953be553-aec4-4f0f-8ccb-428280320964/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-953be553-aec4-4f0f-8ccb-428280320964/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-953be553-aec4-4f0f-8ccb-428280320964/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-953be553-aec4-4f0f-8ccb-428280320964/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T12:48:27+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-0aef2ec9-962c-48fc-b039-cc4457e0ce15",
+                  "displayName": "test5r",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-0aef2ec9-962c-48fc-b039-cc4457e0ce15/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-0aef2ec9-962c-48fc-b039-cc4457e0ce15/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-0aef2ec9-962c-48fc-b039-cc4457e0ce15/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-0aef2ec9-962c-48fc-b039-cc4457e0ce15/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T12:24:57+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-cf93564b-4754-4713-aa05-1d169829d493",
+                  "displayName": "test63",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-cf93564b-4754-4713-aa05-1d169829d493/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-cf93564b-4754-4713-aa05-1d169829d493/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-cf93564b-4754-4713-aa05-1d169829d493/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-cf93564b-4754-4713-aa05-1d169829d493/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-11T11:44:50+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-d2d410e1-a2da-49e1-aeff-442f547ef25a",
+                  "displayName": "test6r",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-d2d410e1-a2da-49e1-aeff-442f547ef25a/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-d2d410e1-a2da-49e1-aeff-442f547ef25a/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-d2d410e1-a2da-49e1-aeff-442f547ef25a/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-d2d410e1-a2da-49e1-aeff-442f547ef25a/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T12:29:16+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-f70624d8-2ac5-42fe-baec-74230ce1e67d",
+                  "displayName": "test7r",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-f70624d8-2ac5-42fe-baec-74230ce1e67d/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-f70624d8-2ac5-42fe-baec-74230ce1e67d/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-f70624d8-2ac5-42fe-baec-74230ce1e67d/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-f70624d8-2ac5-42fe-baec-74230ce1e67d/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T12:38:47+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-7f44e2f6-a4f4-4ba8-8f94-f03e7f721912",
+                  "displayName": "test902",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-7f44e2f6-a4f4-4ba8-8f94-f03e7f721912/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-7f44e2f6-a4f4-4ba8-8f94-f03e7f721912/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-7f44e2f6-a4f4-4ba8-8f94-f03e7f721912/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-7f44e2f6-a4f4-4ba8-8f94-f03e7f721912/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T14:03:44+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-e2cd636b-63c3-43d8-8ad1-31f72bf45265",
+                  "displayName": "testAA",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-e2cd636b-63c3-43d8-8ad1-31f72bf45265/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-e2cd636b-63c3-43d8-8ad1-31f72bf45265/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-e2cd636b-63c3-43d8-8ad1-31f72bf45265/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-e2cd636b-63c3-43d8-8ad1-31f72bf45265/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-05T22:01:30+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-31cd3247-7633-49bc-af38-620521773f21",
+                  "displayName": "teste3",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-31cd3247-7633-49bc-af38-620521773f21/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-31cd3247-7633-49bc-af38-620521773f21/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-31cd3247-7633-49bc-af38-620521773f21/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-31cd3247-7633-49bc-af38-620521773f21/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-11T11:34:21+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-5fdad9a2-9cbc-4408-9289-25fc4393bbe5",
+                  "displayName": "testiii",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-5fdad9a2-9cbc-4408-9289-25fc4393bbe5/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-5fdad9a2-9cbc-4408-9289-25fc4393bbe5/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-5fdad9a2-9cbc-4408-9289-25fc4393bbe5/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-5fdad9a2-9cbc-4408-9289-25fc4393bbe5/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T12:50:59+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-781ca10f-f912-4735-8015-9e40a60bdf0c",
+                  "displayName": "testOP",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-781ca10f-f912-4735-8015-9e40a60bdf0c/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-781ca10f-f912-4735-8015-9e40a60bdf0c/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-781ca10f-f912-4735-8015-9e40a60bdf0c/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-781ca10f-f912-4735-8015-9e40a60bdf0c/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T12:33:57+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-1f9083df-b45d-4a98-aa69-061001ca6fe5",
+                  "displayName": "testpo",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-1f9083df-b45d-4a98-aa69-061001ca6fe5/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-1f9083df-b45d-4a98-aa69-061001ca6fe5/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-1f9083df-b45d-4a98-aa69-061001ca6fe5/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-1f9083df-b45d-4a98-aa69-061001ca6fe5/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-04T13:15:45+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                },
+                {
+                  "id": "INTG-11106664-bb49-4eb0-a150-fade97596426",
+                  "displayName": "testWW",
+                  "integration": {
+                    "id": "KUBERNETES",
+                    "name": "Kubernetes",
+                    "multipleInstallations": true
+                  },
+                  "deployment": "cloud",
+                  "configFiles": [
+                    {
+                      "id": 0,
+                      "name": "auto-detection-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-11106664-bb49-4eb0-a150-fade97596426/configFile/auto-detection-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "creds-config-map.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-11106664-bb49-4eb0-a150-fade97596426/configFile/creds-config-map"
+                    },
+                    {
+                      "id": 0,
+                      "name": "Kubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-11106664-bb49-4eb0-a150-fade97596426/configFile/Kubernetes"
+                    },
+                    {
+                      "id": 0,
+                      "name": "statsDMonitoringKubernetes.yaml",
+                      "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-11106664-bb49-4eb0-a150-fade97596426/configFile/statsDMonitoringKubernetes"
+                    }
+                  ],
+                  "installedBy": "test2",
+                  "installedTime": "2020-09-05T22:07:28+0530",
+                  "containerEngineType": "ContainerD",
+                  "status": "enabled"
+                }
+              ],
+              "totalResults": 29,
+              "pageNo": 1,
+              "pageSize": 100,
+              "totalPages": 1,
+              "nextPage": false,
+              "previousPageNo": 0,
+              "descendingOrder": false
+            }
+          }
+        }
+      ]
+    },
+    "advanceSearch": {
+      "clients": [
+        {
+          "id": "client_2",
+          "response": {
+            "results": [],
+            "totalResults": 0,
+            "pageNo": 1,
+            "pageSize": 100,
+            "totalPages": 0,
+            "nextPage": false,
+            "descendingOrder": false
+          }
+        }
+      ]
+    },
+    "Kubernetes": {
+      "success": {
+        "yaml": {
+          "kubernetes": "apiVersion: v1\r\nkind: Namespace\r\nmetadata:\r\n  name: opsramp-agent\r\n---\r\nkind: ClusterRole\r\napiVersion: rbac.authorization.k8s.io/v1\r\nmetadata:\r\n  name: opsrampagentcr\r\nrules:\r\n  - nonResourceURLs:\r\n      - \"/version\"\r\n      - \"/healthz\"\r\n      - \"/metrics\"\r\n    verbs: [\"get\"]\r\n  - apiGroups: [\"\"]\r\n    resources:\r\n      - \"nodes\"\r\n      - \"daemonsets\"\r\n      - \"deployments\"\r\n      - \"services\"\r\n      - \"events\"\r\n      - \"configmaps\"\r\n      - \"pods\"\r\n    verbs: [\"get\", \"list\", \"watch\"]\r\n  - apiGroups: [\"\"]\r\n    resources:\r\n      - \"pods\"\r\n      - \"pods/exec\"\r\n    verbs: [\"get\", \"list\", \"create\"]\r\n  - apiGroups: [\"\"] # For Schdeuler, controller and Api Metrics collection\r\n    resources:\r\n      - \"pods/proxy\"\r\n      - \"nodes/proxy\"\r\n      - \"pods/metrics\"\r\n      - \"nodes/metrics\"\r\n    verbs: [\"get\"]\r\n---\r\nkind: ClusterRole\r\napiVersion: rbac.authorization.k8s.io/v1\r\nmetadata:\r\n  name: agent-updater\r\nrules:\r\n  - apiGroups: [\"*\"]\r\n    resources: [\"pods\", \"daemonsets\", \"deployments\"]\r\n    verbs: [\"create\", \"delete\", \"get\", \"update\"]\r\n---\r\napiVersion: v1\r\nkind: ServiceAccount\r\nmetadata:\r\n  name: opsrampagent\r\n  namespace: opsramp-agent\r\nautomountServiceAccountToken: true\r\n---\r\napiVersion: v1\r\nkind: ServiceAccount\r\nmetadata:\r\n  name: opsrampagentupdate\r\n  namespace: opsramp-agent\r\nautomountServiceAccountToken: true\r\n---\r\nkind: ClusterRoleBinding\r\napiVersion: rbac.authorization.k8s.io/v1\r\nmetadata:\r\n  name: opsrampagentrb\r\nsubjects:\r\n  - kind: ServiceAccount\r\n    name: opsrampagent\r\n    namespace: opsramp-agent\r\nroleRef:\r\n  kind: ClusterRole\r\n  name: opsrampagentcr\r\n  apiGroup: rbac.authorization.k8s.io\r\n---\r\nkind: ClusterRoleBinding\r\napiVersion: rbac.authorization.k8s.io/v1\r\nmetadata:\r\n  name: agentupdaterb\r\nsubjects:\r\n  - kind: ServiceAccount\r\n    name: opsrampagentupdate\r\n    namespace: opsramp-agent\r\nroleRef:\r\n  kind: ClusterRole\r\n  name: agent-updater\r\n  apiGroup: rbac.authorization.k8s.io\r\n---\r\napiVersion: apps/v1\r\n# Kubernetes Versions after 1.9.0 should use apps/v1\r\n# Kubernetes Versions before 1.8.0 should use extensions/v1beta1 or apps/v1beta1\r\nkind: DaemonSet\r\nmetadata:\r\n  name: opsramp-agent-worker\r\n  namespace: opsramp-agent\r\nspec:\r\n  updateStrategy:\r\n    type: RollingUpdate\r\n  minReadySeconds: 10\r\n  selector:\r\n    matchLabels:\r\n      name: opsramp-agent-worker\r\n  template:\r\n    metadata:\r\n      labels:\r\n        name: opsramp-agent-worker\r\n    spec:\r\n      hostNetwork: true\r\n      hostPID: true\r\n      tolerations:\r\n        - key: node-role.kubernetes.io/master\r\n          effect: NoSchedule\r\n      containers:\r\n        - image: opsramp/agent\r\n          imagePullPolicy: Always\r\n          name: opsramp-agent\r\n          terminationMessagePath: /dev/termination-log\r\n          env:\r\n            - name: AGENT_API_KEY\r\n              value: \"SZHDyW7vVE5KdDbaxgkXmzCEG5AVyJpv\"\r\n            - name: AGENT_API_SECRET\r\n              value: \"FgUCMtswA5CTwp3seNa5CaRYneHCMWA4rQx9ey2sPBmJ2WbKRXtHUQFut9W5rvaM\"\r\n            - name: INTEGRATION_RES_UUID\r\n              value: \"a23c8a8d-7911-4ef4-b93e-cea7121fed9c\"\r\n            - name: APP_SERVER\r\n              value: \"asura.opsramp.net\"\r\n            - name: CLIENT_ID\r\n              value: \"client_22843\"\r\n            - name: LOG_LEVEL\r\n              value: \"warn\"\r\n            - name: K8SAGENT\r\n              value: \"TRUE\"\r\n            - name: DOCKER_EVENTS\r\n              value: \"FALSE\"\r\n            - name: KUBERNETES_TYPE\r\n              value: \"K8S\"\r\n            - name: CONTAINER_ENGINE\r\n              value: \"ContainerD\"\r\n            - name: AUTO_MONITOR\r\n              value: \"TRUE\"\r\n          resources:\r\n            requests:\r\n              memory: \"128Mi\"\r\n              cpu: \"100m\"\r\n            limits:\r\n              memory: \"512Mi\"\r\n              cpu: \"250m\"\r\n          securityContext:\r\n            privileged: true\r\n          volumeMounts:\r\n            - name: dockersocket\r\n              mountPath: /run/containerd/containerd.sock\r\n              readOnly: true\r\n            - name: procdir\r\n              mountPath: /host/proc\r\n              readOnly: true\r\n            - name: cgroups\r\n              mountPath: /host/sys/fs/cgroup\r\n              readOnly: true\r\n            - name: mounts\r\n              mountPath: /host/mnt\r\n              readOnly: true\r\n            - name: agent-creds-volume\r\n              mountPath: /opt/opsramp/agent/conf/app.d/creds.yaml\r\n              subPath: creds.yaml\r\n              readOnly: true\r\n            - name: agent-custom-volume\r\n              mountPath: /opt/opsramp/agent/conf/app.d/auto-container-detection.yaml\r\n              subPath: auto-container-detection.yaml\r\n              readOnly: true\r\n      volumes:\r\n        - name: dockersocket\r\n          hostPath:\r\n            path: /run/containerd/containerd.sock\r\n        - name: procdir\r\n          hostPath:\r\n            path: /proc\r\n        - name: cgroups\r\n          hostPath:\r\n            path: /sys/fs/cgroup\r\n        - name: mounts\r\n          hostPath:\r\n            path: /mnt\r\n        - name: agent-creds-volume\r\n          configMap:\r\n            name: agent-creds\r\n        - name: agent-custom-volume\r\n          configMap:\r\n            name: agent-custom\r\n      serviceAccount: opsrampagent\r\n      terminationGracePeriodSeconds: 10\r\n---\r\napiVersion: apps/v1\r\nkind: Deployment\r\nmetadata:\r\n  name: opsramp-agent-master\r\n  namespace: opsramp-agent\r\nspec:\r\n  replicas: 1\r\n  selector:\r\n    matchLabels:\r\n      app: opsramp-k8s-agent\r\n  strategy:\r\n    type: RollingUpdate\r\n  template:\r\n    metadata:\r\n      labels:\r\n        app: opsramp-k8s-agent\r\n    spec:\r\n      containers:\r\n        - name: test83-opsramp-k8s-agent\r\n          image: opsramp/agent\r\n          imagePullPolicy: Always\r\n          env:\r\n            - name: AGENT_API_KEY\r\n              value: \"SZHDyW7vVE5KdDbaxgkXmzCEG5AVyJpv\"\r\n            - name: AGENT_API_SECRET\r\n              value: \"FgUCMtswA5CTwp3seNa5CaRYneHCMWA4rQx9ey2sPBmJ2WbKRXtHUQFut9W5rvaM\"\r\n            - name: APP_SERVER\r\n              value: \"asura.opsramp.net\"\r\n            - name: CLIENT_ID\r\n              value: \"client_22843\"\r\n            - name: LOG_LEVEL\r\n              value: \"warn\"\r\n            - name: K8SAGENT_MASTER\r\n              value: \"TRUE\"\r\n            - name: MASTER_UUID\r\n              value: \"INTG-4d281b5b-5bbe-47eb-903b-63bcd61809d0\"\r\n            - name: INTEGRATION_RES_UUID\r\n              value: \"a23c8a8d-7911-4ef4-b93e-cea7121fed9c\"\r\n            - name: K8S_EVENTS\r\n              value: \"FALSE\"\r\n            - name: KUBERNETES_TYPE\r\n              value: \"K8S\"\r\n            - name: CONTAINER_ENGINE\r\n              value: \"ContainerD\"\r\n            - name: AUTO_MONITOR\r\n              value: \"TRUE\"\r\n          resources:\r\n            requests:\r\n              memory: \"128Mi\"\r\n              cpu: \"100m\"\r\n            limits:\r\n              memory: \"512Mi\"\r\n              cpu: \"250m\"\r\n      serviceAccount: opsrampagent\r\n---\r\napiVersion: v1\r\nkind: ConfigMap\r\nmetadata:\r\n  name: kube-events\r\n  labels:\r\n    name: kube-events\r\n  namespace: opsramp-agent\r\ndata:\r\n  eventsConfig.yaml: |\r\n    node:\r\n    - RegisteredNode\r\n    - RemovingNode\r\n    - DeletingNode\r\n    - TerminatingEvictedPod\r\n    - NodeReady\r\n    - NodeNotReady\r\n    - NodeSchedulable\r\n    - NodeNotSchedulable\r\n    - CIDRNotAvailable\r\n    - CIDRAssignmentFailed\r\n    - Starting\r\n    - KubeletSetupFailed\r\n    - FailedMount\r\n    - NodeSelectorMismatching\r\n    - InsufficientFreeCPU\r\n    - InsufficientFreeMemory\r\n    - OutOfDisk\r\n    - HostNetworkNotSupported\r\n    - NilShaper\r\n    - Rebooted\r\n    - NodeHasSufficientDisk\r\n    - NodeOutOfDisk\r\n    - InvalidDiskCapacity\r\n    - FreeDiskSpaceFailed\r\n    pod:\r\n    - Failed\r\n    - InspectFailed\r\n    - ErrImageNeverPull\r\n    - Killing\r\n    - OutOfDisk\r\n    - HostPortConflict\r\n    other:\r\n    - FailedBinding\r\n    - FailedScheduling\r\n    - SuccessfulCreate\r\n    - FailedCreate\r\n    - SuccessfulDelete\r\n    - FailedDelete\r\n",
+          "agent": "apiVersion: v1\r\nkind: Namespace\r\nmetadata:\r\n  name: opsramp-agent\r\n---\r\napiVersion: v1\r\nkind: ConfigMap\r\nmetadata:\r\n  name: agent-custom\r\n  labels:\r\n    name: agent-custom\r\n  namespace: opsramp-agent\r\ndata:\r\n  auto-container-detection.yaml: |-\r\n    ---\r\n    - name: cassandra\r\n      container-checks:\r\n        image-check:\r\n          - cassandra\r\n        port-check:\r\n          - 9042\r\n          - 9160\r\n          - 7000\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: hbase\r\n      container-checks:\r\n        image-check:\r\n          - hbase\r\n        port-check:\r\n          - 60010\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: activemq\r\n      container-checks:\r\n        image-check:\r\n          - activemq\r\n        port-check:\r\n          - 61616\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"1099\"\r\n    - name: kafka\r\n      container-checks:\r\n        image-check:\r\n          - kafka\r\n        port-check:\r\n          - 9092\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"5199\"\r\n    - name: tomcat\r\n      container-checks:\r\n        image-check:\r\n          - tomcat\r\n        port-check:\r\n          - 8080\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: zookeeper\r\n      container-checks:\r\n        image-check:\r\n          - zookeeper\r\n        port-check:\r\n          - 2181\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"5199\"\r\n    - name: websphere\r\n      container-checks:\r\n        image-check:\r\n          - websphere\r\n        port-check:\r\n          - 9043\r\n          - 9060\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: jboss\r\n      container-checks:\r\n        image-check:\r\n          - jboss\r\n          - wildfly\r\n        port-check:\r\n          - 9990\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: weblogic\r\n      container-checks:\r\n        image-check:\r\n          - weblogic\r\n        port-check:\r\n          - 7001\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: solr\r\n      container-checks:\r\n        image-check:\r\n          - solr\r\n        port-check:\r\n          - 8983\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: elasticsearch\r\n      container-checks:\r\n        image-check:\r\n          - elasticsearch\r\n        port-check:\r\n          - 9200\r\n          - 9300\r\n    - name: mysql\r\n      container-checks:\r\n        image-check:\r\n          - mysql\r\n        port-check:\r\n          - 3306\r\n    - name: redis\r\n      container-checks:\r\n        image-check:\r\n          - redis\r\n        port-check:\r\n          - 6379\r\n      misc:\r\n        socket-timeout: \"10\"\r\n    - name: k8s-apiserver\r\n      container-checks:\r\n        image-check:\r\n          - kube-apiserver\r\n        uri-check:\r\n          - \"https://<KUBERNETES_SERVICE_HOST>:443/metrics\"\r\n    - name: k8s-controller\r\n      container-checks:\r\n        image-check:\r\n          - kube-controller-manager\r\n        uri-check:\r\n          - \"https://kube-controller-manager-<KUBERNETES_CONTROLLER_HOST>:10252/metrics\"\r\n    - name: k8s-scheduler\r\n      container-checks:\r\n        image-check:\r\n          - kube-scheduler\r\n        uri-check:\r\n          - \"https://kube-scheduler-<KUBERNETES_CONTROLLER_HOST>:10251/metrics\"\r\n    - name: k8s-kube-state\r\n      container-checks:\r\n        image-check:\r\n          - kube-state-metrics\r\n        uri-check:\r\n          - \"http://<kube-state-metrics-service-ip>:<kube-state-metrics-service-port>/metrics\"\r\n    - name: k8s-metrics-server\r\n      container-checks:\r\n        image-check:\r\n          - metrics-server\r\n        uri-check:\r\n          - \"http://<kube-metrics-server-service-ip>:<kube-metrics-server-service-port>/metrics\"\r\n    - name: k8s-coredns\r\n      container-checks:\r\n        image-check:\r\n          - coredns\r\n        uri-check:\r\n          - \"http://<core-dns-pod-ip>:<core-dns-pod-port>/metrics\"\r\n    - name: k8s-kubedns\r\n      container-checks:\r\n        image-check:\r\n          - kube-dns\r\n        uri-check:\r\n          - \"http://<kube-dns-pod-ip>:<kube-dns-pod-port>/metrics\"\r\n    - name: nginx\r\n      container-checks:\r\n        image-check:\r\n          - nginx\r\n        port-check:\r\n          - 80\r\n    - name: ceph\r\n      container-checks:\r\n        image-check:\r\n          - daemon\r\n      misc:\r\n        cephbinary: \"/usr/bin/ceph\"\r\n        socketdir: \"/var/run/ceph\"\r\n    - name: hdfs-namenode\r\n      container-checks:\r\n        image-check:\r\n          - namenode\r\n        port-check:\r\n          - 50070\r\n          - 9870\r\n    - name: hdfs-datanode\r\n      container-checks:\r\n        image-check:\r\n          - datanode\r\n        port-check:\r\n          - 50075\r\n          - 9864\r\n    - name: memcached\r\n      container-checks:\r\n        image-check:\r\n          - memcached\r\n        port-check:\r\n          - 11211\r\n    - name: mongodb\r\n      container-checks:\r\n        image-check:\r\n          - mongo\r\n        port-check:\r\n          - 27017\r\n          - 27018\r\n          - 27019\r\n    - name: squid\r\n      container-checks:\r\n        image-check:\r\n          - squid\r\n        port-check:\r\n          - 3128\r\n    - name: spark\r\n      container-checks:\r\n        image-check:\r\n          - spark\r\n        port-check:\r\n          - 8080\r\n    - name: rabbitmq\r\n      container-checks:\r\n        image-check:\r\n          - rabbitmq\r\n        port-check:\r\n          - 15672\r\n          - 5672\r\n      misc:\r\n        queue-names: \"\"\r\n    - name: lighttpd\r\n      container-checks:\r\n        image-check:\r\n          - lighttpd\r\n        port-check:\r\n          - 80\r\n    - name: monit\r\n      container-checks:\r\n        image-check:\r\n          - monit\r\n        port-check:\r\n          - 2812\r\n    - name: apache\r\n      container-checks:\r\n        image-check:\r\n          - httpd\r\n        port-check:\r\n          - 80\r\n    - name: postgresql\r\n      container-checks:\r\n        image-check:\r\n          - postgres\r\n        port-check:\r\n          - 5432\r\n        #  monitoring-configs :\r\n        #    #   The name of the PostgresSQL database to monitor.\r\n        #    #   Note: If omitted, the default system Postgres database is queried.\r\n        #    dbname: $DBNAME\r\n        #    #   ssl type could be any of these := disable , allow, prefer, require, verify-ca, verify-full\r\n        #    ssl: disable\r\n        #    #   The list of relations/tables must be specified here to track per-relation (table) metrics.\r\n        #    #   If enabled, `dbname` should be specified to collect database-specific relations metrics.\r\n        #    #   You can either specify a single relation by its exact name in relation_name or use a regex to track metrics in relation_regex\r\n        #    #   By default all schemas are included. To track relations from specific schemas only,\r\n        #    #   you can specify the `schemas` attribute and provide a list of schemas to use for filtering.\r\n        #    relations:\r\n        #      - relation_name: $TABLE_NAME1\r\n        #        schemas:\r\n        #          - $SCHEMA_NAME1\r\n        #      - relation_name: $TABLE_NAME2\r\n        #        schemas:\r\n        #          - $SCHEMA_NAME1\r\n        #          - $SCHEMA_NAME2\r\n        #      - relation_regex: $TABLE_PATTERN1\r\n        #        schemas:\r\n        #          - $SCHEMA_NAME1\r\n        #          - $SCHEMA_NAME2\r\n    - name: cockroachdb\r\n      container-checks:\r\n        image-check:\r\n          - cockroach\r\n        port-check:\r\n          - 26257\r\n          - 8080\r\n    - name: oracle\r\n      container-checks:\r\n        image-check:\r\n          - oracle\r\n        port-check:\r\n          - 1521\r\n    - name: haproxy\r\n      container-checks:\r\n        image-check:\r\n          - haproxy\r\n        port-check:\r\n          - 9000\r\n    - name: eventstore\r\n      container-checks:\r\n        image-check:\r\n          - eventstore\r\n        port-check:\r\n          - 2113\r\n      misc:\r\n        proto: \"https\"\r\n",
+          "credential": "apiVersion: v1\r\nkind: Namespace\r\nmetadata:\r\n  name: opsramp-agent\r\n---\r\napiVersion: v1\r\nkind: ConfigMap\r\nmetadata:\r\n  name: agent-custom\r\n  labels:\r\n    name: agent-custom\r\n  namespace: opsramp-agent\r\ndata:\r\n  auto-container-detection.yaml: |-\r\n    ---\r\n    - name: cassandra\r\n      container-checks:\r\n        image-check:\r\n          - cassandra\r\n        port-check:\r\n          - 9042\r\n          - 9160\r\n          - 7000\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: hbase\r\n      container-checks:\r\n        image-check:\r\n          - hbase\r\n        port-check:\r\n          - 60010\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: activemq\r\n      container-checks:\r\n        image-check:\r\n          - activemq\r\n        port-check:\r\n          - 61616\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"1099\"\r\n    - name: kafka\r\n      container-checks:\r\n        image-check:\r\n          - kafka\r\n        port-check:\r\n          - 9092\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"5199\"\r\n    - name: tomcat\r\n      container-checks:\r\n        image-check:\r\n          - tomcat\r\n        port-check:\r\n          - 8080\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: zookeeper\r\n      container-checks:\r\n        image-check:\r\n          - zookeeper\r\n        port-check:\r\n          - 2181\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"5199\"\r\n    - name: websphere\r\n      container-checks:\r\n        image-check:\r\n          - websphere\r\n        port-check:\r\n          - 9043\r\n          - 9060\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: jboss\r\n      container-checks:\r\n        image-check:\r\n          - jboss\r\n          - wildfly\r\n        port-check:\r\n          - 9990\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: weblogic\r\n      container-checks:\r\n        image-check:\r\n          - weblogic\r\n        port-check:\r\n          - 7001\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: solr\r\n      container-checks:\r\n        image-check:\r\n          - solr\r\n        port-check:\r\n          - 8983\r\n      mon-type: \"jmx\"\r\n      misc:\r\n        jmx-port: \"7199\"\r\n    - name: elasticsearch\r\n      container-checks:\r\n        image-check:\r\n          - elasticsearch\r\n        port-check:\r\n          - 9200\r\n          - 9300\r\n    - name: mysql\r\n      container-checks:\r\n        image-check:\r\n          - mysql\r\n        port-check:\r\n          - 3306\r\n    - name: redis\r\n      container-checks:\r\n        image-check:\r\n          - redis\r\n        port-check:\r\n          - 6379\r\n      misc:\r\n        socket-timeout: \"10\"\r\n    - name: k8s-apiserver\r\n      container-checks:\r\n        image-check:\r\n          - kube-apiserver\r\n        uri-check:\r\n          - \"https://<KUBERNETES_SERVICE_HOST>:443/metrics\"\r\n    - name: k8s-controller\r\n      container-checks:\r\n        image-check:\r\n          - kube-controller-manager\r\n        uri-check:\r\n          - \"https://kube-controller-manager-<KUBERNETES_CONTROLLER_HOST>:10252/metrics\"\r\n    - name: k8s-scheduler\r\n      container-checks:\r\n        image-check:\r\n          - kube-scheduler\r\n        uri-check:\r\n          - \"https://kube-scheduler-<KUBERNETES_CONTROLLER_HOST>:10251/metrics\"\r\n    - name: k8s-kube-state\r\n      container-checks:\r\n        image-check:\r\n          - kube-state-metrics\r\n        uri-check:\r\n          - \"http://<kube-state-metrics-service-ip>:<kube-state-metrics-service-port>/metrics\"\r\n    - name: k8s-metrics-server\r\n      container-checks:\r\n        image-check:\r\n          - metrics-server\r\n        uri-check:\r\n          - \"http://<kube-metrics-server-service-ip>:<kube-metrics-server-service-port>/metrics\"\r\n    - name: k8s-coredns\r\n      container-checks:\r\n        image-check:\r\n          - coredns\r\n        uri-check:\r\n          - \"http://<core-dns-pod-ip>:<core-dns-pod-port>/metrics\"\r\n    - name: k8s-kubedns\r\n      container-checks:\r\n        image-check:\r\n          - kube-dns\r\n        uri-check:\r\n          - \"http://<kube-dns-pod-ip>:<kube-dns-pod-port>/metrics\"\r\n    - name: nginx\r\n      container-checks:\r\n        image-check:\r\n          - nginx\r\n        port-check:\r\n          - 80\r\n    - name: ceph\r\n      container-checks:\r\n        image-check:\r\n          - daemon\r\n      misc:\r\n        cephbinary: \"/usr/bin/ceph\"\r\n        socketdir: \"/var/run/ceph\"\r\n    - name: hdfs-namenode\r\n      container-checks:\r\n        image-check:\r\n          - namenode\r\n        port-check:\r\n          - 50070\r\n          - 9870\r\n    - name: hdfs-datanode\r\n      container-checks:\r\n        image-check:\r\n          - datanode\r\n        port-check:\r\n          - 50075\r\n          - 9864\r\n    - name: memcached\r\n      container-checks:\r\n        image-check:\r\n          - memcached\r\n        port-check:\r\n          - 11211\r\n    - name: mongodb\r\n      container-checks:\r\n        image-check:\r\n          - mongo\r\n        port-check:\r\n          - 27017\r\n          - 27018\r\n          - 27019\r\n    - name: squid\r\n      container-checks:\r\n        image-check:\r\n          - squid\r\n        port-check:\r\n          - 3128\r\n    - name: spark\r\n      container-checks:\r\n        image-check:\r\n          - spark\r\n        port-check:\r\n          - 8080\r\n    - name: rabbitmq\r\n      container-checks:\r\n        image-check:\r\n          - rabbitmq\r\n        port-check:\r\n          - 15672\r\n          - 5672\r\n      misc:\r\n        queue-names: \"\"\r\n    - name: lighttpd\r\n      container-checks:\r\n        image-check:\r\n          - lighttpd\r\n        port-check:\r\n          - 80\r\n    - name: monit\r\n      container-checks:\r\n        image-check:\r\n          - monit\r\n        port-check:\r\n          - 2812\r\n    - name: apache\r\n      container-checks:\r\n        image-check:\r\n          - httpd\r\n        port-check:\r\n          - 80\r\n    - name: postgresql\r\n      container-checks:\r\n        image-check:\r\n          - postgres\r\n        port-check:\r\n          - 5432\r\n        #  monitoring-configs :\r\n        #    #   The name of the PostgresSQL database to monitor.\r\n        #    #   Note: If omitted, the default system Postgres database is queried.\r\n        #    dbname: $DBNAME\r\n        #    #   ssl type could be any of these := disable , allow, prefer, require, verify-ca, verify-full\r\n        #    ssl: disable\r\n        #    #   The list of relations/tables must be specified here to track per-relation (table) metrics.\r\n        #    #   If enabled, `dbname` should be specified to collect database-specific relations metrics.\r\n        #    #   You can either specify a single relation by its exact name in relation_name or use a regex to track metrics in relation_regex\r\n        #    #   By default all schemas are included. To track relations from specific schemas only,\r\n        #    #   you can specify the `schemas` attribute and provide a list of schemas to use for filtering.\r\n        #    relations:\r\n        #      - relation_name: $TABLE_NAME1\r\n        #        schemas:\r\n        #          - $SCHEMA_NAME1\r\n        #      - relation_name: $TABLE_NAME2\r\n        #        schemas:\r\n        #          - $SCHEMA_NAME1\r\n        #          - $SCHEMA_NAME2\r\n        #      - relation_regex: $TABLE_PATTERN1\r\n        #        schemas:\r\n        #          - $SCHEMA_NAME1\r\n        #          - $SCHEMA_NAME2\r\n    - name: cockroachdb\r\n      container-checks:\r\n        image-check:\r\n          - cockroach\r\n        port-check:\r\n          - 26257\r\n          - 8080\r\n    - name: oracle\r\n      container-checks:\r\n        image-check:\r\n          - oracle\r\n        port-check:\r\n          - 1521\r\n    - name: haproxy\r\n      container-checks:\r\n        image-check:\r\n          - haproxy\r\n        port-check:\r\n          - 9000\r\n    - name: eventstore\r\n      container-checks:\r\n        image-check:\r\n          - eventstore\r\n        port-check:\r\n          - 2113\r\n      misc:\r\n        proto: \"https\"\r\n"
+        },
+        "id": "INTG-4d281b5b-5bbe-47eb-903b-63bcd61809d0",
+        "displayName": "test83",
+        "integration": {
+          "id": "KUBERNETES",
+          "name": "Kubernetes",
+          "multipleInstallations": true
+        },
+        "deployment": "cloud",
+        "configFiles": [
+          {
+            "id": 0,
+            "name": "auto-detection-config-map.yaml",
+            "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-4d281b5b-5bbe-47eb-903b-63bcd61809d0/configFile/auto-detection-config-map"
+          },
+          {
+            "id": 0,
+            "name": "creds-config-map.yaml",
+            "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-4d281b5b-5bbe-47eb-903b-63bcd61809d0/configFile/creds-config-map"
+          },
+          {
+            "id": 0,
+            "name": "Kubernetes.yaml",
+            "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-4d281b5b-5bbe-47eb-903b-63bcd61809d0/configFile/Kubernetes"
+          },
+          {
+            "id": 0,
+            "name": "statsDMonitoringKubernetes.yaml",
+            "contentURL": "api/v2/tenants/client_2/integrations/installed/INTG-4d281b5b-5bbe-47eb-903b-63bcd61809d0/configFile/statsDMonitoringKubernetes"
+          }
+        ],
+        "installedBy": "test2",
+        "installedTime": "2020-09-15T21:45:26+0530",
+        "containerEngineType": "ContainerD",
+        "status": "enabled"
+      }
+    }
+  },
+  "customData": {
+    "logo": {
+      "logoPath": "https://test.opsramp.net/images//org/136098/5048.png?1599821809827",
+      "thumbPath": "https://test.opsramp.net/images//org/136098/thumb-5048.png?1599821809871",
+      "tinyThumbPath": "https://test.opsramp.net/images//org/136098/tiny-thumb-5048.png?1599821809899",
+      "imageType": "image/png"
+    }
+  }
+}

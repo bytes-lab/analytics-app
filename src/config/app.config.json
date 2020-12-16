@@ -1,0 +1,4 @@
+{
+  "dashboard": "/dashboard.do?action=loadDashboard",
+  "login": "/login.do"
+}

@@ -1,0 +1,78 @@
+stages:
+  - yarn
+  - test
+  - docker
+
+variables:
+  # see https://on.cypress.io/caching
+  CYPRESS_CACHE_FOLDER: "$CI_BUILDS_DIR/cache/Cypress"
+  CACHE: "$CI_COMMIT_REF_SLUG"
+
+before_script:
+  # set up SSH key so we can clone the opsramp-design-system repository
+  # see: https://docs.gitlab.com/ee/ci/ssh_keys/
+  # - 'which ssh-agent || (apt-get update -y && apt-get install openssh-client -y)'
+  # - eval $(ssh-agent -s)
+  # - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 --decode)
+  # - mkdir -p ~/.ssh
+  # - chmod 700 ~/.ssh
+  # - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+  # install dependencies
+  - npm config set registry http://everest-npm-registry.com/
+  - if [ ! -d node_modules ] || [ ! -f yarn.lock.saved ] || ! cmp -s yarn.lock
+    yarn.lock.saved && [ "$CI_JOB_STAGE" == "yarn" ] ; then cp yarn.lock
+    yarn.lock.saved; rm yarn.lock; yarn install; fi;
+
+yarn-build:
+  stage: yarn
+  cache:
+    key: $CACHE
+    paths:
+      - node_modules/
+      - yarn.lock.saved
+  script:
+    - echo Setting up yarn ...
+  tags:
+    - shell2
+unit-test:
+  stage: test
+  cache:
+    key: $CACHE
+    paths:
+      - node_modules/
+    policy: pull
+  script:
+    - yarn test:coverage
+  tags:
+    - shell2
+sonarqube:
+  image: ciricihq/gitlab-sonar-scanner
+  only:
+    - develop
+  stage: test
+  variables:
+    SONAR_URL: http://172.26.1.81:9000
+    SONAR_ANALYSIS_MODE: publish
+  script:
+    - gitlab-sonar-scanner
+  before_script: # override the global before_script
+    - ""
+  tags:
+    - docker
+build-and-push-docker:
+  stage: docker
+  only:
+    - develop
+  script:
+    - export CI_COMMIT_SHORT_SHA=$(git rev-parse --short HEAD)
+
+    # build and push our image
+    - docker build -t opsramp/infra-ui:$CI_COMMIT_SHORT_SHA -f Dockerfile .
+    - docker tag opsramp/infra-ui:$CI_COMMIT_SHORT_SHA
+      opsramp/infra-ui:latest
+    - docker tag opsramp/infra-ui:$CI_COMMIT_SHORT_SHA
+      quay.io/opsramp/infra-ui
+    - docker push quay.io/opsramp/infra-ui
+  tags:
+    - shell2

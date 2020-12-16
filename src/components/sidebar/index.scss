@@ -1,0 +1,204 @@
+.sidebar {
+  // background-color: #fff;
+  max-width: 120px;
+  min-width: 102px;
+
+  .sidebar-links {
+    background-color: #fff;
+    border-radius: 6px;
+
+    .sidebar-link {
+      text-align: center;
+      border-radius: 6px;
+      padding: 14px;
+      color: #757575;
+
+      i {
+        font-size: 20px;
+      }
+
+      .sidebar-link-label {
+        display: block;
+        text-align: center;
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+    .sidebar-link:nth-child(1) {
+      background-color: #0077c8;
+      color: #fff;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+// Old itom sidebar styles
+#leftDiv {
+  width: 66px;
+  background-color: #637983;
+  font-size: 0.875rem;
+
+  span {
+    font-size: 11px !important;
+  }
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/MaterialIcons-Regular.woff') format('woff');
+}
+
+.tbIcon {
+  color: #d3d3d3;
+  position: relative;
+  text-align: center;
+  height: 60px;
+  padding: 12px 0px;
+  padding-bottom: 18px;
+  cursor: pointer;
+  display: block;
+
+  span {
+    width: 100%;
+    float: left;
+    margin-top: 3px;
+    font-size: 0.875rem !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+
+.tbIcon.selected::before {
+  display: inline-block;
+  content: '';
+  background-color: #747474;
+}
+
+.tbIcon::before {
+  background-size: cover;
+  display: inline-block;
+  content: '';
+  background-color: #637983;
+  width: 22px;
+  height: 22px;
+}
+
+.tbIcon::after {
+  color: #f4f4f4;
+  width: 100%;
+  text-align: center;
+  margin-top: 5px;
+  float: left;
+}
+
+.tbIcon:hover {
+  background-color: #4d8fb3;
+  color: #cccccc;
+}
+.tbIcon:hover::before {
+  background-color: #4d8fb3 !important;
+}
+.tbIcon.selected:hover::before {
+  background-color: #eee !important;
+}
+.tbIcon.selected {
+  color: #888888;
+  background-color: #ebebeb;
+}
+.tbIcon.selected::before {
+  color: #888888 !important;
+  background-color: #eee !important;
+}
+.tbIcon.selected::after {
+  color: #8b8b8b;
+}
+
+/* start resourseSearch, feature flagged infrastructure link */
+.resourceSearch {
+  // color: #d3d3d3;
+  color: #888888;
+  background-color: #ebebeb;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+
+.resourceSearch a {
+  // color: #d3d3d3;
+  color: #888888;
+  background-color: #ebebeb;
+  height: 60px;
+  padding: 3px 0px 18px 0px;
+  display: block;
+}
+
+.resourceSearch span {
+  width: 100%;
+  float: left;
+  margin-top: 3px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.resourceSearch i {
+  font-size: 22px;
+}
+/* end resourseSearch */
+
+.resources.selected::before {
+  background-image: url(/img/m_server.svg);
+}
+.resources::before {
+  background-image: url(/img/m_server_n.svg);
+}
+.resourceGroups::before {
+  background-image: url(/img/m_device_group_n.svg);
+}
+.resourceGroups.selected::before {
+  background-image: url(/img/m_device_group.svg);
+}
+.sites::before {
+  background-image: url(/img/m_sites_n.svg);
+}
+.sites.selected::before {
+  background-image: url(/img/m_sites.svg);
+}
+.services::before {
+  background-image: url(/img/m_services_n.svg);
+}
+.services.selected::before {
+  background-image: url(/img/m_services.svg);
+}
+.maint::before {
+  background-image: url(/img/m_maintenance_n.svg);
+}
+.maint.selected::before {
+  background-image: url(/img/m_maintenance.svg);
+}
+.activity::before {
+  background-image: url(/img/m_activity_n.svg);
+}
+.activity.selected::before {
+  background-image: url(/img/m_activity.svg);
+}
+.containers::before {
+  background-image: url(/img/m_containers_n.svg);
+}
+.containers.selected::before {
+  background-image: url(/img/m_containers.svg);
+}
+
+.nwmap::before {
+  background-image: url(/img/topology_Unselected.svg);
+}
