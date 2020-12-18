@@ -3,7 +3,7 @@
   z-index: 1;
 }
 
-.infrastructure-wrapper {
+.analytics-apps-wrapper {
   display: flex;
   height: 100%;
   overflow: hidden;
@@ -41,7 +41,7 @@
   @import 'modules/topology/index.scss';
 }
 
-#InfrastructureUI-container {
+#AnalyticsAppsUI-container {
   position: absolute;
   top: 0;
   right: 0;

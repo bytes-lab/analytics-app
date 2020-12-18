@@ -1,1 +1,1 @@
-export * from './Infrastructure-ui'
+export * from './analytics-apps-ui'
