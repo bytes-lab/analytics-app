@@ -9546,7 +9546,7 @@ p-reduce@^1.0.0:
 
 p-retry@^3.0.1:
   version "3.0.1"
-  resolved "http://everest-npm-registry.com/p-retry/-/p-retry-3.0.1.tgz#316b4c8893e2c8dc1cfa891f406c4b422bebf328"
+  resolved "http://everest-npm-registry.com/p-retry/-/p-retry-3.0.1.tgz#316b4c80e2c8dc1cfa891f406c4b422bebf328"
   integrity sha512-XE6G4+YTTkT2a0UWb2kjZe8xNwf8bIbnqpc/IS/idOBVhyves0mK5OJgeocjx7q5pvX/6m23xuzVPYT1uGM73w==
   dependencies:
     retry "^0.12.0"

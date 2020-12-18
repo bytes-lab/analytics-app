@@ -8,9 +8,6 @@
   height: 100%;
   overflow: hidden;
 
-  @import 'components/sidebar/index.scss';
-  @import 'components/view-tabs/index.scss';
-
   .content-placeholder {
     background: #fff;
     color: gray;
@@ -35,10 +32,6 @@
       font-size: 20px;
     }
   }
-
-  @import 'modules/resources/index.scss';
-  @import 'modules/overview/index.scss';
-  @import 'modules/topology/index.scss';
 }
 
 #AnalyticsAppsUI-container {
