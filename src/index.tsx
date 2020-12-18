@@ -7,14 +7,12 @@ import './index.scss'
 import * as serviceWorker from './serviceWorker'
 import { History, createBrowserHistory } from 'history'
 import { Router } from 'react-router-dom'
-import { InfrastructureUI } from 'container'
+import { AnalyticsAppsUI } from 'container'
 import AppProvider from 'context'
 import { UserNavInfo } from 'context/nav-context'
 import './i18n'
-import { ViewsProvider } from 'context/views-context'
-import { ResourceGridProvider } from 'context/resource-grid-context'
 
-window.renderInfrastructureUI = (
+window.renderAnalyticsAppsUI = (
   containerId: string,
   history: History = createBrowserHistory({
     basename: '/analytics-apps'
@@ -24,18 +22,14 @@ window.renderInfrastructureUI = (
   ReactDOM.render(
     <Router history={history}>
       <AppProvider>
-        <ViewsProvider>
-          <ResourceGridProvider>
-            <InfrastructureUI userNavInfo={userNavInfo} />
-          </ResourceGridProvider>
-        </ViewsProvider>
+        <AnalyticsAppsUI userNavInfo={userNavInfo} />
       </AppProvider>
     </Router>,
     document.getElementById(containerId)
   )
 }
 
-window.unmountInfrastructureUI = (containerId: string) => {
+window.unmountAnalyticsAppsUI = (containerId: string) => {
   if (document.getElementById(containerId)) {
     ReactDOM.unmountComponentAtNode(
       document.getElementById(containerId) as Element
