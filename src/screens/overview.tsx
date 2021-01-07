@@ -15,25 +15,23 @@ const OverviewScreen: React.FC<OverviewScreenProps> = ({ userNavInfo }) => {
     let apps = [
       {
         id: 1,
-        name: 'Metered Usage',
+        name: 'Metered Usage Insights',
         image: require('../assets/app-1.png'),
-        link:
-          'https://dash-gallery.plotly.host/dash-manufacture-spc-dashboard/',
+        link: 'http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/metered-usage-insight',
         tag: 'Dashboard'
       },
       {
         id: 2,
         name: 'Asset Insights',
         image: require('../assets/app-2.png'),
-        link:
-          'http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/oap-h',
+        link: 'http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/oap-h',
         tag: 'Financial'
       },
       {
         id: 3,
         name: 'Ops 360',
         image: require('../assets/app-3.png'),
-        link: 'https://dash-gallery.plotly.host/dash-oil-and-gas/',
+        link: 'http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/oap-g',
         tag: 'Geospatial'
       }
     ]
