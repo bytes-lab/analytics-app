@@ -3,6 +3,9 @@ import os
 import json
 import copy
 
+import flask
+import requests
+
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
@@ -289,6 +292,39 @@ def pie_graph_weighted_type_usage(search_types):
 
     figure = dict(data=[data], layout=layout_pie)
     return figure
+
+
+# api integration
+@app.callback(
+    Output('total_clients', 'children'),
+    Input('gen-pdf', 'n_clicks'),
+    State(out_store_id, 'data')
+)
+def get_total_clients(n_clicks, data):
+    if not n_clicks:  # initial loading
+        url = f'https://localhost/api/v2/tenants/msp_21998/clients/search'
+        res = requests.get(url, verify=False, cookies=flask.request.cookies)
+        total_clients = '-'
+        if res.status_code == 200:
+            total_clients = res.json()['totalResults']
+
+        return total_clients
+
+
+@app.callback(
+    Output('total_resources', 'children'),
+    Input('gen-pdf', 'n_clicks'),
+    State(out_store_id, 'data')
+)
+def get_total_resources(n_clicks, data):
+    if not n_clicks:  # initial loading
+        url = f'https://localhost/api/v2/tenants/msp_21998/resources/search'
+        res = requests.get(url, verify=False, cookies=flask.request.cookies)
+        total_resources = '-'
+        if res.status_code == 200:
+            total_resources = res.json()['totalResults']
+
+        return total_resources
 
 
 if __name__ == "__main__":

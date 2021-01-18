@@ -42,7 +42,7 @@ def create_layout(app, embedded=False):
                                                 [
                                                     html.Div(
                                                         [
-                                                            html.Div(["25"], className="font-weight-bold mb-2", style={"font-size": "16px"}),
+                                                            html.Div(["-"], id="total_clients", className="font-weight-bold mb-2", style={"font-size": "16px"}),
                                                             html.P("Clients", className="mb-0")
                                                         ],
                                                         id="gas",
@@ -50,7 +50,7 @@ def create_layout(app, embedded=False):
                                                     ),
                                                     html.Div(
                                                         [
-                                                            html.Div(["50"], className="font-weight-bold mb-2", style={"font-size": "16px"}),
+                                                            html.Div(["-"], id="total_resources", className="font-weight-bold mb-2", style={"font-size": "16px"}),
                                                             html.P("Resource Types", className="mb-0")
                                                         ],
                                                         id="gas",
