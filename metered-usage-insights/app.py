@@ -302,7 +302,7 @@ def pie_graph_weighted_type_usage(search_types):
 )
 def get_total_clients(n_clicks, data):
     if not n_clicks:  # initial loading
-        url = f'https://localhost/api/v2/tenants/msp_21998/clients/search'
+        url = f'https://asura.opsramp.net/api/v2/tenants/msp_21998/clients/search'
         res = requests.get(url, verify=False, cookies=flask.request.cookies)
         total_clients = '-'
         if res.status_code == 200:
@@ -318,7 +318,7 @@ def get_total_clients(n_clicks, data):
 )
 def get_total_resources(n_clicks, data):
     if not n_clicks:  # initial loading
-        url = f'https://localhost/api/v2/tenants/msp_21998/resources/search'
+        url = f'https://asura.opsramp.net/api/v2/tenants/msp_21998/resources/search'
         res = requests.get(url, verify=False, cookies=flask.request.cookies)
         total_resources = '-'
         if res.status_code == 200:
