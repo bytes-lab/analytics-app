@@ -17,7 +17,7 @@ const OverviewScreen: React.FC<OverviewScreenProps> = ({ userNavInfo }) => {
         id: 1,
         name: 'Metered Usage Insights',
         image: require('../assets/app-1.png'),
-        link: 'http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/metered-usage-insight',
+        link: 'https://localhost/metered-usage-insight',
         tag: 'Dashboard'
       },
       {
