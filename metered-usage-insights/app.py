@@ -48,7 +48,8 @@ app.layout = html.Div(
 # Update page
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
-    pathname = pathname.lstrip('/'+app.route)  # IMP
+    route_prefix = '/'+app.route if app.route else ''
+    pathname = pathname.replace(route_prefix+'/', '')  # IMP
 
     if pathname == "client-breakdown":
         return client_breakdown.create_layout(app)

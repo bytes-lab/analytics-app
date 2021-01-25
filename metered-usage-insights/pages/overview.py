@@ -45,7 +45,6 @@ def create_layout(app, embedded=False):
                                                             html.Div(["-"], id="total_clients", className="font-weight-bold mb-2", style={"font-size": "16px"}),
                                                             html.P("Clients", className="mb-0")
                                                         ],
-                                                        id="gas",
                                                         className="border border-1 col-3 text-center py-3",
                                                     ),
                                                     html.Div(
@@ -53,7 +52,6 @@ def create_layout(app, embedded=False):
                                                             html.Div(["-"], id="total_resources", className="font-weight-bold mb-2", style={"font-size": "16px"}),
                                                             html.P("Resource Types", className="mb-0")
                                                         ],
-                                                        id="gas",
                                                         className="border border-1 col-3 text-center py-3",
                                                     ),
                                                     html.Div(
@@ -61,7 +59,6 @@ def create_layout(app, embedded=False):
                                                             html.Div(["50,000"], className="font-weight-bold mb-2", style={"font-size": "16px"}),
                                                             html.P("Unweighted Resources", className="mb-0")
                                                         ],
-                                                        id="gas",
                                                         className="border border-1 col-3 text-center py-3",
                                                     ),
                                                     html.Div(
@@ -69,7 +66,6 @@ def create_layout(app, embedded=False):
                                                             html.Div(["25,000"], className="font-weight-bold mb-2", style={"font-size": "16px"}),
                                                             html.P("Weighted Resources", className="mb-0")
                                                         ],
-                                                        id="gas",
                                                         className="border border-1 col-3 text-center py-3",
                                                     ),
                                                 ],
