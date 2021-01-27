@@ -14,6 +14,8 @@ from analytics_sdk.utilities import (
     generate_pdf
 )
 
+from utils import *
+
 
 PLATFORM_ROUTE = os.getenv("PLATFORM_ROUTE", '')
 in_store_id = "_oap_data_in_" + PLATFORM_ROUTE
@@ -193,11 +195,11 @@ def register_callbacks(app):
         )
         layout_pie['margin'] = dict(l=0, r=50, b=00, t=00)
 
-        device_types = ['Type A', 'Type B', 'Type C', 'Type D', 'Type E', 'Type F']
+        resource_types = get_resource_types()
         yy = [27.5, 26.4, 32.3, 13.8, 7, 6]
 
         data = copy.deepcopy(graph_data)
-        data['labels'] = device_types
+        data['labels'] = resource_types
         data['values'] = yy
 
         figure = dict(data=[data], layout=layout_pie)
@@ -218,11 +220,11 @@ def register_callbacks(app):
             y=0.1
         )
 
-        device_types = ['Type A', 'Type B', 'Type C', 'Type D', 'Type E', 'Type F']
+        resource_types = get_resource_types()
         yy = [27.5, 26.4, 32.3, 13.8, 7, 6]
 
         data = copy.deepcopy(graph_data)
-        data['labels'] = device_types
+        data['labels'] = resource_types
         data['values'] = yy
 
         figure = dict(data=[data], layout=layout_pie)
