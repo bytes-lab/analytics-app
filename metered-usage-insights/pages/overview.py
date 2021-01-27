@@ -1,11 +1,11 @@
+import pathlib
+import pandas as pd
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 
-from utils import *
+from pages.utils import *
 
-import pandas as pd
-import pathlib
 
 # get relative data folder
 PATH = pathlib.Path(__file__).parent

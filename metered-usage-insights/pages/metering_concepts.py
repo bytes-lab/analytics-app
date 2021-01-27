@@ -1,5 +1,6 @@
 import dash_html_components as html
-from utils import *
+
+from pages.utils import *
 
 
 def create_layout(app, embedded=False):
