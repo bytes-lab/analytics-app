@@ -1,18 +1,8 @@
-import pathlib
-import pandas as pd
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 
 from pages.utils import *
-
-
-# get relative data folder
-PATH = pathlib.Path(__file__).parent
-DATA_PATH = PATH.joinpath("../data").resolve()
-
-
-df_minimums = pd.read_csv(DATA_PATH.joinpath("df_minimums.csv"))
 
 
 def create_layout(app, embedded=False):
@@ -88,7 +78,7 @@ def create_layout(app, embedded=False):
                                             html.H6(
                                                 ["Usage Breakdown by resource tier"], className="subtitle padded"
                                             ),
-                                            html.Table(make_dash_table(df_minimums)),
+                                            html.Table(id="table-resource-type"),
                                         ],
                                         className="six columns",
                                     ),

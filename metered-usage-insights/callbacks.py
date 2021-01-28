@@ -15,6 +15,7 @@ from analytics_sdk.utilities import (
 )
 
 from utils import *
+from pages.utils import *
 
 
 PLATFORM_ROUTE = os.getenv("PLATFORM_ROUTE", '')
@@ -229,6 +230,29 @@ def register_callbacks(app):
 
         figure = dict(data=[data], layout=layout_pie)
         return figure
+
+    @app.callback(
+        Output("table-resource-type", "children"),
+        [
+            Input(in_store_id, "data"),
+        ],
+    )
+    def pie_graph_weighted_type_usage(search_types):
+        rows = {}
+        metric_types = get_metric_types()
+
+        for metric_type in metric_types:
+            entries = metric_type.split('_')
+            val = get_metric_value(metric_type)
+            if entries[2] not in rows:
+                rows[entries[2]] = {}
+            rows[entries[2]][entries[3]] = val['data']['result'][0]['value'][0]
+
+        table_rows = [['Resource Tier', 'Usage (Unweighted)', 'Usage (Weighted)']]
+        for metric, values in rows.items():
+            table_rows.append([metric.title(), values['unweighted'], values['weighted']])
+
+        return make_dash_table(table_rows)
 
     # api integration
     @app.callback(

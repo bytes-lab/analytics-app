@@ -116,13 +116,13 @@ def get_menu(app):
     return menu
 
 
-def make_dash_table(df):
+def make_dash_table(table_rows):
     """ Return a dash definition of an HTML table for a Pandas dataframe """
     table = []
-    for index, row in df.iterrows():
+    for row in table_rows:
         html_row = []
-        for i in range(len(row)):
-            html_row.append(html.Td([row[i]]))
+        for item in row:
+            html_row.append(html.Td([item]))
         table.append(html.Tr(html_row))
     return table
 
