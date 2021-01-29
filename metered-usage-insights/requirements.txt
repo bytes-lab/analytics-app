@@ -1,2 +1,2 @@
 gunicorn==20.0.4
-opsramp-analytics-utils==1.0.6
+opsramp-analytics-utils==1.0.5

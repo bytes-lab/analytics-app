@@ -22,6 +22,7 @@ app = OAPDash(
     title="OpsRamp Reports",
     route=PLATFORM_ROUTE
 )
+server = app.server
 
 # Describe the layout/ UI of the app
 app.layout = html.Div(
