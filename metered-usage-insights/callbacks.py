@@ -74,23 +74,23 @@ def register_callbacks(app):
         return json.loads(archive['state'])
 
     # save / load settings
-    @app.callback(
-        Output(out_store_id, "data"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
-    )
-    def save_settings(start_date, end_date):
-        return start_date, end_date
+    # @app.callback(
+    #     Output(out_store_id, "data"),
+    #     [
+    #         Input("reporting_priod_picker", "start_date"),
+    #         Input("reporting_priod_picker", "end_date"),
+    #     ]
+    # )
+    # def save_settings(start_date, end_date):
+    #     return start_date, end_date
 
-    @app.callback(
-        Output("reporting_priod_picker", "start_date"),
-        Output("reporting_priod_picker", "end_date"),
-        Input(in_store_id, "data"),
-    )
-    def load_settings(data):
-        return data if data else [None, None]
+    # @app.callback(
+    #     Output("reporting_priod_picker", "start_date"),
+    #     Output("reporting_priod_picker", "end_date"),
+    #     Input(in_store_id, "data"),
+    # )
+    # def load_settings(data):
+    #     return data if data else [None, None]
 
     layout = dict(
         autosize=True,

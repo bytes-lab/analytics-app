@@ -128,6 +128,7 @@ def make_dash_table(table_rows):
 
 
 def get_settings_panel(app):
+    return
     settings_panel = html.Div(
         [
             html.H5("App Settings", style={"font-size": "2rem"}),
