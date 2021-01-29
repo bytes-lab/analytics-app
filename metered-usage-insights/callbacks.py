@@ -262,12 +262,7 @@ def register_callbacks(app):
     )
     def get_total_clients(n_clicks, data):
         if not n_clicks:  # initial loading
-            url = f'https://asura.opsramp.net/api/v2/tenants/msp_21998/clients/search'
-            res = requests.get(url, verify=False, cookies=flask.request.cookies)
             total_clients = '-'
-            if res.status_code == 200:
-                total_clients = res.json()['totalResults']
-
             return total_clients
 
     @app.callback(
@@ -277,10 +272,5 @@ def register_callbacks(app):
     )
     def get_total_resources(n_clicks, data):
         if not n_clicks:  # initial loading
-            url = f'https://asura.opsramp.net/api/v2/tenants/msp_21998/resources/search'
-            res = requests.get(url, verify=False, cookies=flask.request.cookies)
-            total_resources = '-'
-            if res.status_code == 200:
-                total_resources = res.json()['totalResults']
-
-            return total_resources
+            resource_types = get_resource_types()
+            return len(resource_types)
