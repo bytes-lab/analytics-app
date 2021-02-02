@@ -29,6 +29,7 @@ def get_metric_types(client_id=None):
 
 
 def get_metric_value(tenant_id, metric_name, start=None, end=None):
+    print (tenant_id, metric_name, start, end, 12345)
     url = BASE_URL + '/metricql/query'
     body = {
         "tenantId": tenant_id,

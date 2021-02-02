@@ -73,23 +73,23 @@ def register_callbacks(app):
         return json.loads(archive['state'])
 
     # save / load settings
-    # @app.callback(
-    #     Output(out_store_id, "data"),
-    #     [
-    #         Input("reporting_priod_picker", "start_date"),
-    #         Input("reporting_priod_picker", "end_date"),
-    #     ]
-    # )
-    # def save_settings(start_date, end_date):
-    #     return start_date, end_date
+    @app.callback(
+        Output(out_store_id, "data"),
+        [
+            Input("reporting_priod_picker", "start_date"),
+            Input("reporting_priod_picker", "end_date"),
+        ]
+    )
+    def save_settings(start_date, end_date):
+        return start_date, end_date
 
-    # @app.callback(
-    #     Output("reporting_priod_picker", "start_date"),
-    #     Output("reporting_priod_picker", "end_date"),
-    #     Input(in_store_id, "data"),
-    # )
-    # def load_settings(data):
-    #     return data if data else [None, None]
+    @app.callback(
+        Output("reporting_priod_picker", "start_date"),
+        Output("reporting_priod_picker", "end_date"),
+        Input(in_store_id, "data"),
+    )
+    def load_settings(data):
+        return data if data else [None, None]
 
     layout = dict(
         autosize=True,
@@ -233,18 +233,19 @@ def register_callbacks(app):
     @app.callback(
         Output("table-resource-type", "children"),
         [
-            Input(in_store_id, "data"),
-        ],
+            Input("reporting_priod_picker", "start_date"),
+            Input("reporting_priod_picker", "end_date"),
+        ]
     )
-    def pie_graph_weighted_type_usage(search_types):
+    def pie_graph_weighted_type_usage(start_date, end_date):
         rows = {}
         tenant_id = "0"
         metric_names = get_metric_types()
         table_rows = [['Resource Tier', 'Usage (Unweighted)', 'Usage (Weighted)']]
 
         for metric_name, types in metric_names.items():
-            unweighted = get_metric_value(tenant_id, types['unweighted'])
-            weighted = get_metric_value(tenant_id, types['weighted'])
+            unweighted = get_metric_value(tenant_id, types['unweighted'], start_date, end_date)
+            weighted = get_metric_value(tenant_id, types['weighted'], start_date, end_date)
             _unweighted = unweighted['data']['result'][0]['value'][0]
             _weighted = weighted['data']['result'][0]['value'][0]
 
