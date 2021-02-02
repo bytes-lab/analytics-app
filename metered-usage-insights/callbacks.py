@@ -3,7 +3,6 @@ import copy
 import json
 
 import flask
-import requests
 
 from dash.dependencies import Input, Output, State
 
@@ -239,18 +238,17 @@ def register_callbacks(app):
     )
     def pie_graph_weighted_type_usage(search_types):
         rows = {}
-        metric_types = get_metric_types()
-
-        for metric_type in metric_types:
-            entries = metric_type.split('_')
-            val = get_metric_value(metric_type)
-            if entries[2] not in rows:
-                rows[entries[2]] = {}
-            rows[entries[2]][entries[3]] = val['data']['result'][0]['value'][0]
-
+        tenant_id = "0"
+        metric_names = get_metric_types()
         table_rows = [['Resource Tier', 'Usage (Unweighted)', 'Usage (Weighted)']]
-        for metric, values in rows.items():
-            table_rows.append([metric.title(), values['unweighted'], values['weighted']])
+
+        for metric_name, types in metric_names.items():
+            unweighted = get_metric_value(tenant_id, types['unweighted'])
+            weighted = get_metric_value(tenant_id, types['weighted'])
+            _unweighted = unweighted['data']['result'][0]['value'][0]
+            _weighted = weighted['data']['result'][0]['value'][0]
+
+            table_rows.append([metric_name.title(), _unweighted, _weighted])
 
         return make_dash_table(table_rows)
 
@@ -262,8 +260,8 @@ def register_callbacks(app):
     )
     def get_total_clients(n_clicks, data):
         if not n_clicks:  # initial loading
-            total_clients = '-'
-            return total_clients
+            tenants = get_tenants()
+            return len(tenants)
 
     @app.callback(
         Output('total_resources', 'children'),

@@ -1,8 +1,17 @@
 import json
 
 import requests
+import requests_cache
 
+requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=300)
 BASE_URL = 'http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com'
+
+
+def get_tenants(client_id=None):
+    url = BASE_URL + '/metricsql/tenants'
+    res = requests.get(url).json()
+
+    return res
 
 
 def get_resource_types(client_id=None):
@@ -13,16 +22,17 @@ def get_resource_types(client_id=None):
 
 
 def get_metric_types(client_id=None):
-    url = BASE_URL + '/metricsql/metric-types'
+    url = BASE_URL + '/metricsql/metric-names'
     res = requests.get(url).json()
 
     return res
 
 
-def get_metric_value(metric, start=None, end=None):
+def get_metric_value(tenant_id, metric_name, start=None, end=None):
     url = BASE_URL + '/metricql/query'
     body = {
-        "metric": metric,
+        "tenantId": tenant_id,
+        "metricName": metric_name,
         "start": start,
         "end": end
     }

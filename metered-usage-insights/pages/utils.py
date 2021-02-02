@@ -117,7 +117,7 @@ def get_menu(app):
 
 
 def make_dash_table(table_rows):
-    """ Return a dash definition of an HTML table for a Pandas dataframe """
+    """ Return a dash definition of an HTML table for a list of list """
     table = []
     for row in table_rows:
         html_row = []
