@@ -25,7 +25,7 @@ def create_layout(app, embedded=False):
                                                 ["Summary"], className="subtitle padded"
                                             ),
                                             html.Br(),
-                                            html.Div("This report shows you your OpsRamp usage over the metering period."),
+                                            html.Div("This application shows you your OpsRamp usage over the metering period."),
                                             html.Br(),
                                             html.Div([html.B("Reporting Peirod"), html.Span("10/1/20 8:00 AM PDT - 10/14/20 8:00 AM PDT", style={"margin-left": "50px"})]),
                                             html.Div(
@@ -35,28 +35,14 @@ def create_layout(app, embedded=False):
                                                             html.Div(["-"], id="total_clients", className="font-weight-bold mb-2", style={"font-size": "16px"}),
                                                             html.P("Clients", className="mb-0")
                                                         ],
-                                                        className="border border-1 col-3 text-center py-3",
+                                                        className="border border-1 col-6 text-center py-3",
                                                     ),
                                                     html.Div(
                                                         [
                                                             html.Div(["-"], id="total_resources", className="font-weight-bold mb-2", style={"font-size": "16px"}),
                                                             html.P("Resource Types", className="mb-0")
                                                         ],
-                                                        className="border border-1 col-3 text-center py-3",
-                                                    ),
-                                                    html.Div(
-                                                        [
-                                                            html.Div(["50,000"], className="font-weight-bold mb-2", style={"font-size": "16px"}),
-                                                            html.P("Unweighted Resources", className="mb-0")
-                                                        ],
-                                                        className="border border-1 col-3 text-center py-3",
-                                                    ),
-                                                    html.Div(
-                                                        [
-                                                            html.Div(["25,000"], className="font-weight-bold mb-2", style={"font-size": "16px"}),
-                                                            html.P("Weighted Resources", className="mb-0")
-                                                        ],
-                                                        className="border border-1 col-3 text-center py-3",
+                                                        className="border border-1 col-6 text-center py-3",
                                                     ),
                                                 ],
                                                 id="info-container",

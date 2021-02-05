@@ -116,14 +116,28 @@ def get_menu(app):
     return menu
 
 
-def make_dash_table(table_rows):
+def render_table(table_rows):
     """ Return a dash definition of an HTML table for a list of list """
     table = []
-    for row in table_rows:
+
+    header = table_rows[0]
+    html_row = []
+    for item in header:
+        html_row.append(html.Td([html.B(item)], className="pl-2"))
+    table.append(html.Tr(html_row))
+
+    for row in table_rows[1:-1]:
         html_row = []
         for item in row:
-            html_row.append(html.Td([item]))
+            html_row.append(html.Td([item], className="pl-2"))
         table.append(html.Tr(html_row))
+
+    footer = table_rows[-1]
+    html_row = []
+    for item in footer:
+        html_row.append(html.Td([html.B(item)], className="pl-2"))
+    table.append(html.Tr(html_row))
+
     return table
 
 

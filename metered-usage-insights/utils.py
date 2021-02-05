@@ -1,39 +1,42 @@
+import os
 import json
 
 import requests
 import requests_cache
 
-requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600, allowable_methods=("GET", "POST"))
-BASE_URL = 'http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com'
+requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*30, allowable_methods=("GET", "POST"))
+
+BASE_URL = os.getenv('API_SERVER', '')
 
 
-def get_tenants(client_id=None):
+def get_tenants():
     url = BASE_URL + '/metricsql/tenants'
     res = requests.get(url).json()
 
     return res
 
 
-def get_resource_types(client_id=None):
+def get_resource_types():
     url = BASE_URL + '/metricsql/resource-types'
     res = requests.get(url).json()
 
     return res
 
 
-def get_metric_types(client_id=None):
+def get_metric_names():
     url = BASE_URL + '/metricsql/metric-names'
     res = requests.get(url).json()
 
     return res
 
 
-def get_metric_value(tenant_id, metric_name, start=None, end=None):
-    print (tenant_id, metric_name, start, end, 12345)
+def get_metric_value(tenant_id, metric_name, resource_type=None, start=None, end=None):
     url = BASE_URL + '/metricql/query'
+
     body = {
         "tenantId": tenant_id,
         "metricName": metric_name,
+        "resourceType": resource_type,
         "start": start,
         "end": end
     }
