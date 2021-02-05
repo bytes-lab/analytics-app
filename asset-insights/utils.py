@@ -3,7 +3,7 @@ import json
 import requests
 import requests_cache
 
-requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600, allowable_methods=("GET", "POST"))
+requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=300)
 BASE_URL = 'http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com'
 
 
