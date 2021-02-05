@@ -125,18 +125,25 @@ def register_callbacks(app):
     @app.callback(
         Output("pie-graph-total-usage", "figure"),
         [
-            Input(in_store_id, "data"),
-        ],
+            Input("reporting_priod_picker", "start_date"),
+            Input("reporting_priod_picker", "end_date"),
+        ]
     )
-    def pie_graph_total_usage(search_types):
+    def pie_graph_total_usage(start_date, end_date):
+        breakdown_resource_tier = get_breakdown_resource_tier(start_date, end_date)
+
         layout_pie = copy.deepcopy(layout)
 
-        device_types = ['Events-Only', 'Inventory-Only', 'Up-Down', 'Fully-Managed']
-        yy = [27.5, 26.4, 32.3, 13.8]
+        x_values = []
+        y_values = []
+
+        for metric_name, values in breakdown_resource_tier.items():
+            x_values.append(metric_name.title())
+            y_values.append(values['unweighted']+values['weighted'])
 
         data = copy.deepcopy(graph_data)
-        data['labels'] = device_types
-        data['values'] = yy
+        data['labels'] = x_values
+        data['values'] = y_values
 
         figure = dict(data=[data], layout=layout_pie)
         return figure
@@ -238,23 +245,16 @@ def register_callbacks(app):
         ]
     )
     def pie_graph_weighted_type_usage(start_date, end_date):
-        rows = {}
-        tenant_id = "0"
-        metric_names = get_metric_names()
+        breakdown_resource_tier = get_breakdown_resource_tier(start_date, end_date)
         table_rows = [['Resource Tier', 'Usage (Unweighted)', 'Usage (Weighted)']]
 
         total_unweighted = total_weighted = 0
-        for metric_name, types in metric_names.items():
-            unweighted = get_metric_value(tenant_id, types['unweighted'], start_date, end_date)
-            weighted = get_metric_value(tenant_id, types['weighted'], start_date, end_date)
-            _unweighted = unweighted['data']['result'][0]['value'][0]
-            _weighted = weighted['data']['result'][0]['value'][0]
-            total_unweighted += _unweighted
-            total_weighted += _weighted
+        for metric_name, values in breakdown_resource_tier.items():
+            table_rows.append([metric_name.title(), f'{values["unweighted"]:,.2f}', f'{values["weighted"]:,.2f}'])
+            total_unweighted += values['unweighted']
+            total_weighted += values['weighted']
 
-            table_rows.append([metric_name.title(), f'{_unweighted:.2f}', f'{_weighted:.2f}'])
-
-        table_rows.append(['Total', f'{total_unweighted:.2f}', f'{total_weighted:.2f}'])
+        table_rows.append(['Total', f'{total_unweighted:,.2f}', f'{total_weighted:,.2f}'])
 
         return render_table(table_rows)
 
