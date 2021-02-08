@@ -30,13 +30,14 @@ def get_metric_names():
     return res
 
 
-def get_metric_value(tenant_id, metric_name, resource_type=None, start=None, end=None):
+def get_metric_value(tenant_id, metric_name, function, resource_type=None, start=None, end=None):
     url = BASE_URL + '/metricql/query'
 
     body = {
         "tenantId": tenant_id,
         "metricName": metric_name,
         "resourceType": resource_type,
+        "function": function,
         "start": start,
         "end": end
     }
@@ -46,11 +47,11 @@ def get_metric_value(tenant_id, metric_name, resource_type=None, start=None, end
     return res
 
 
-def get_weight_metric(tenant_id, unweighted_metric, weighted_metric, resource_type=None, start=None, end=None):
-    unweighted = get_metric_value(tenant_id, unweighted_metric, resource_type, start, end)
-    weighted = get_metric_value(tenant_id, weighted_metric, resource_type, start, end)
-    _unweighted = unweighted['data']['result'][0]['value'][0]
-    _weighted = weighted['data']['result'][0]['value'][0]
+def get_weight_metric(tenant_id, unweighted_metric, weighted_metric, function, resource_type=None, start=None, end=None):
+    unweighted = get_metric_value(tenant_id, unweighted_metric, function, resource_type, start, end)
+    weighted = get_metric_value(tenant_id, weighted_metric, function, resource_type, start, end)
+    _unweighted = unweighted['data']['result'][0]['values'][0]
+    _weighted = weighted['data']['result'][0]['values'][0]
 
     return _unweighted, _weighted
 
@@ -65,7 +66,7 @@ def get_breakdown_resource_tier(start_date, end_date):
 
         for tenant in tenants:
             tenant_id = tenant['tenantId']
-            _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], None, start_date, end_date)
+            _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], "avg_over_time", None, start_date, end_date)
             resp[metric_name]['unweighted'] += _unweighted
             resp[metric_name]['weighted'] += _weighted
 
@@ -82,8 +83,27 @@ def get_breakdown_client(start_date, end_date):
         resp[tenant_id] = { 'name': tenant['tenantName'], 'unweighted': 0, 'weighted': 0 }
 
         for metric_name, types in metric_names.items():
-            _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], None, start_date, end_date)
+            _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], "avg_over_time", None, start_date, end_date)
             resp[tenant_id]['unweighted'] += _unweighted
             resp[tenant_id]['weighted'] += _weighted
+
+    return resp
+
+
+def get_breakdown_resource_type(start_date, end_date):
+    tenants = get_tenants()
+    metric_names = get_metric_names()
+    resource_types = get_resource_types()
+    resp = {}
+
+    for resource_type in resource_types:
+        resp[resource_type] = { 'name': resource_type, 'unweighted': 0, 'weighted': 0 }
+
+        for metric_name, types in metric_names.items():
+            for tenant in tenants:
+                tenant_id = tenant['tenantId']
+                _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], "avg_over_time", resource_type, start_date, end_date)
+                resp[resource_type]['unweighted'] += _unweighted
+                resp[resource_type]['weighted'] += _weighted
 
     return resp

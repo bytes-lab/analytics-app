@@ -292,53 +292,89 @@ def register_callbacks(app):
     @app.callback(
         Output("pie-graph-unweighted-type-usage", "figure"),
         [
-            Input(in_store_id, "data"),
-        ],
+            Input("reporting_priod_picker", "start_date"),
+            Input("reporting_priod_picker", "end_date"),
+        ]
     )
-    def pie_graph_unweighted_type_usage(search_types):
-        layout_pie = dict(pie_graph_layout)
-        layout_pie['legend'] = dict(
-            font=dict(color="#333", size="10"),
-            orientation="v",
-            bgcolor="rgba(0,0,0,0)",
-            y=0.1
-        )
-        layout_pie['margin'] = dict(l=0, r=50, b=00, t=00)
+    def pie_graph_unweighted_type_usage(start_date, end_date):
+        breakdown_resource_type = get_breakdown_resource_type(start_date, end_date)
+        resource_types = sorted(breakdown_resource_type.values(), key=lambda k: -k['unweighted'])
 
-        resource_types = get_resource_types()
-        yy = [27.5, 26.4, 32.3, 13.8, 7, 6]
+        x_values = [ii['name'].title() for ii in resource_types]
+        y_values = [ii['unweighted'] for ii in resource_types]
 
         data = dict(pie_graph_data)
-        data['labels'] = resource_types
-        data['values'] = yy
+        data['labels'] = x_values
+        data['values'] = y_values
 
-        figure = dict(data=[data], layout=layout_pie)
+        figure = dict(data=[data], layout=pie_graph_layout)
+
+        return figure
+
+    @app.callback(
+        Output("bar-graph-top-10-resource-type-weighted", "figure"),
+        [
+            Input("reporting_priod_picker", "start_date"),
+            Input("reporting_priod_picker", "end_date"),
+        ]
+    )
+    def bar_graph_top_10_resource_type_weighted(start_date, end_date):
+        breakdown_resource_type = get_breakdown_resource_type(start_date, end_date)
+        resource_types = sorted(breakdown_resource_type.values(), key=lambda k: -k['weighted'])
+
+        bar_data = dict(bar_graph_data)
+        bar_data['x'] = [ii['name'].title() for ii in resource_types[:10]]
+        bar_data['y'] = [ii['weighted'] for ii in resource_types[:10]]
+
+        figure = {
+            "data": [bar_data],
+            "layout": bar_graph_layout,
+        }
+
+        return figure
+
+    @app.callback(
+        Output("bar-graph-bottom-10-resource-type-weighted", "figure"),
+        [
+            Input("reporting_priod_picker", "start_date"),
+            Input("reporting_priod_picker", "end_date"),
+        ]
+    )
+    def bar_graph_bottom_10_resource_type_weighted(start_date, end_date):
+        breakdown_resource_type = get_breakdown_resource_type(start_date, end_date)
+        resource_types = sorted(breakdown_resource_type.values(), key=lambda k: k['weighted'])
+
+        bar_data = dict(bar_graph_data)
+        bar_data['x'] = [ii['name'].title() for ii in resource_types[:10]]
+        bar_data['y'] = [ii['weighted'] for ii in resource_types[:10]]
+
+        figure = {
+            "data": [bar_data],
+            "layout": bar_graph_layout,
+        }
 
         return figure
 
     @app.callback(
         Output("pie-graph-weighted-type-usage", "figure"),
         [
-            Input(in_store_id, "data"),
-        ],
+            Input("reporting_priod_picker", "start_date"),
+            Input("reporting_priod_picker", "end_date"),
+        ]
     )
-    def pie_graph_weighted_type_usage(search_types):
-        layout_pie = dict(pie_graph_layout)
-        layout_pie['legend'] = dict(
-            font=dict(color="#333", size="10"),
-            orientation="v",
-            bgcolor="rgba(0,0,0,0)",
-            y=0.1
-        )
+    def pie_graph_weighted_type_usage(start_date, end_date):
+        breakdown_resource_type = get_breakdown_resource_type(start_date, end_date)
 
-        resource_types = get_resource_types()
-        yy = [27.5, 26.4, 32.3, 13.8, 7, 6]
+        resource_types = sorted(breakdown_resource_type.values(), key=lambda k: -k['weighted'])
+
+        x_values = [ii['name'].title() for ii in resource_types]
+        y_values = [ii['weighted'] for ii in resource_types]
 
         data = dict(pie_graph_data)
-        data['labels'] = resource_types
-        data['values'] = yy
+        data['labels'] = x_values
+        data['values'] = y_values
 
-        figure = dict(data=[data], layout=layout_pie)
+        figure = dict(data=[data], layout=pie_graph_layout)
 
         return figure
 
@@ -349,7 +385,7 @@ def register_callbacks(app):
             Input("reporting_priod_picker", "end_date"),
         ]
     )
-    def pie_graph_weighted_type_usage(start_date, end_date):
+    def table_resource_type(start_date, end_date):
         breakdown_resource_tier = get_breakdown_resource_tier(start_date, end_date)
         table_rows = [['Resource Tier', 'Usage (Unweighted)', 'Usage (Weighted)']]
 
