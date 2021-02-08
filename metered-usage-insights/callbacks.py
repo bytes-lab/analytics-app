@@ -1,5 +1,6 @@
 import os
 import json
+import time
 
 import flask
 import plotly.graph_objs as go
@@ -347,6 +348,34 @@ def register_callbacks(app):
         bar_data = dict(bar_graph_data)
         bar_data['x'] = [ii['name'].title() for ii in resource_types[:10]]
         bar_data['y'] = [ii['weighted'] for ii in resource_types[:10]]
+
+        figure = {
+            "data": [bar_data],
+            "layout": bar_graph_layout,
+        }
+
+        return figure
+
+    @app.callback(
+        Output("bar-graph-weighted-time", "figure"),
+        [
+            Input("reporting_priod_picker", "start_date"),
+            Input("reporting_priod_picker", "end_date"),
+        ]
+    )
+    def bar_graph_weighted_time(start_date, end_date):
+        start_date = "2021-01-01T00:00:00.0Z"
+        end_date = "2021-01-01T00:12:00.0Z"
+        breakdown_time = get_breakdown_time(start_date, end_date)
+        _breakdown_time = [(key, val) for key, val in breakdown_time.items()]
+        _breakdown_time = sorted(_breakdown_time, key=lambda k: k[0])
+
+        bar_data = dict(bar_graph_data)
+        bar_data['x'] = [
+            time.strftime('%H:%M', time.localtime(ii[0]))
+            for ii in _breakdown_time[:12]
+        ]
+        bar_data['y'] = [ii[1] for ii in _breakdown_time[:12]]
 
         figure = {
             "data": [bar_data],

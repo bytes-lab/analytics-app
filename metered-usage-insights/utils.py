@@ -50,10 +50,13 @@ def get_metric_value(tenant_id, metric_name, function, resource_type=None, start
 def get_weight_metric(tenant_id, unweighted_metric, weighted_metric, function, resource_type=None, start=None, end=None):
     unweighted = get_metric_value(tenant_id, unweighted_metric, function, resource_type, start, end)
     weighted = get_metric_value(tenant_id, weighted_metric, function, resource_type, start, end)
-    _unweighted = unweighted['data']['result'][0]['values'][0]
-    _weighted = weighted['data']['result'][0]['values'][0]
+    _unweighted = unweighted['data']['result'][0]['values']
+    _weighted = weighted['data']['result'][0]['values']
 
-    return _unweighted, _weighted
+    if function == "avg_over_time":
+        return _unweighted[0], _weighted[0]
+    else:
+        return _unweighted, _weighted
 
 
 def get_breakdown_resource_tier(start_date, end_date):
@@ -69,6 +72,26 @@ def get_breakdown_resource_tier(start_date, end_date):
             _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], "avg_over_time", None, start_date, end_date)
             resp[metric_name]['unweighted'] += _unweighted
             resp[metric_name]['weighted'] += _weighted
+
+    return resp
+
+
+def get_breakdown_time(start_date, end_date):
+    tenants = get_tenants()
+    metric_names = get_metric_names()
+    resp = {}
+
+    for metric_name, types in metric_names.items():
+        for tenant in tenants:
+            tenant_id = tenant['tenantId']
+            weighted = get_metric_value(tenant_id, types['weighted'], "raw", None, start_date, end_date)
+            values = weighted['data']['result'][0]['values']
+
+            for value in values:
+                if value[0] in resp:  # EPOC
+                    resp[value[0]] += value[1]
+                else:
+                    resp[value[0]] = 0
 
     return resp
 
