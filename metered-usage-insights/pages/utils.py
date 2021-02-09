@@ -62,22 +62,15 @@ def get_header(app):
             html.Div(
                 [
                     html.Div(
-                        [html.H5("Metered Usage Insights"), html.H6("North America")],
-                        className="seven columns main-title",
-                    ),
-                    html.Div(
                         [
-                            dcc.Link(
-                                "Full View",
-                                href=f"{route_prefix}/full-view",
-                                className="full-view-link",
-                            )
+                            html.H5("Metered Usage Insights"),
+                            html.H6("North America", className="sub-title mt-2")
                         ],
-                        className="five columns d-print-none",
-                    ),
+                        className="twelve columns",
+                    )
                 ],
                 className="twelve columns",
-                style={"padding-left": "0", "margin-top": "32px"},
+                style={"padding-left": "1cm", "margin-top": "32px"},
             ),
         ],
         className="row mx-0",
@@ -91,27 +84,28 @@ def get_menu(app):
     menu = html.Div(
         [
             dcc.Link(
-                "Overview",
+                "OVERVIEW",
                 href=f"{route_prefix}/overview",
                 className="tab first",
             ),
             dcc.Link(
-                "Client Breakdown",
+                "CLIENT BREAKDOWN",
                 href=f"{route_prefix}/client-breakdown",
                 className="tab",
             ),
             dcc.Link(
-                "Resource Breakdown",
+                "RESOURCE BREAKDOWN",
                 href=f"{route_prefix}/resource-breakdown",
                 className="tab"
             ),
             dcc.Link(
-                "Metering Concepts",
+                "METERING CONCEPTS",
                 href=f"{route_prefix}/metering-concepts",
                 className="tab",
             ),
         ],
-        className="row ml-4 pl-3 all-tabs",
+        className="row all-tabs",
+        style={ "margin-left": "1cm" }
     )
     return menu
 

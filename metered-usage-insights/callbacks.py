@@ -219,7 +219,6 @@ def register_callbacks(app):
         # width=330,
         xaxis={
             "autorange": True,
-            "range": [-0.5, 4.5],
             "showline": True,
             "title": "",
             "type": "category"
@@ -377,6 +376,7 @@ def register_callbacks(app):
         ]
         bar_data['y'] = [ii[1] for ii in _breakdown_time[:12]]
         bar_data['type'] = 'scatter'
+        bar_data['mode'] = 'lines+markers'
 
         figure = {
             "data": [bar_data],
