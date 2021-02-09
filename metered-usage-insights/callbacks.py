@@ -376,6 +376,7 @@ def register_callbacks(app):
             for ii in _breakdown_time[:12]
         ]
         bar_data['y'] = [ii[1] for ii in _breakdown_time[:12]]
+        bar_data['type'] = 'scatter'
 
         figure = {
             "data": [bar_data],
