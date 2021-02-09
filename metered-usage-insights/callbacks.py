@@ -369,14 +369,12 @@ def register_callbacks(app):
         _breakdown_time = [(key, val) for key, val in breakdown_time.items()]
         _breakdown_time = sorted(_breakdown_time, key=lambda k: k[0])
 
-        bar_data = dict(bar_graph_data)
-        bar_data['x'] = [
-            time.strftime('%H:%M', time.localtime(ii[0]))
-            for ii in _breakdown_time[:12]
-        ]
-        bar_data['y'] = [ii[1] for ii in _breakdown_time[:12]]
-        bar_data['type'] = 'scatter'
-        bar_data['mode'] = 'lines+markers'
+        bar_data = {
+            'x': [time.strftime('%H:%M', time.localtime(ii[0]))
+                  for ii in _breakdown_time[:12]],
+            'y': [ii[1] for ii in _breakdown_time[:12]],
+            'line': {"color": "#0077c8"},
+        }
 
         figure = {
             "data": [bar_data],

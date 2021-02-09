@@ -238,6 +238,7 @@ a:active {
   border-top-style: none;
   border-right-style: none;
   padding: 3px 10px;
+  font-weight: 600;
 }
 
 .tab.first {
