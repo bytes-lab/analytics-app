@@ -12,7 +12,7 @@ def NavBar(app):
     nav_bar = html.Div(
         [
             html.Img(
-                src=app.get_asset_url("dash-financial-logo.png"),
+                src=app.get_asset_url("opsramp-logo.png"),
                 className="logo",
             ),
             html.Div(

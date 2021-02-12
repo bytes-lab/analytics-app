@@ -4,7 +4,7 @@ import json
 import requests
 import requests_cache
 
-requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*30, allowable_methods=("GET", "POST"))
+requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
 
 BASE_URL = os.getenv('API_SERVER', '')
 
