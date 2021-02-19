@@ -3,7 +3,7 @@ FROM python:3.7-slim
 ENV PLATFORM_ROUTE=hello-world-app
 ENV PDF_SERVER=http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/pdf-server/generate-report
 ENV VIEW_SERVICE=http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/view-service
-ENV API_SERVER=http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com
+ENV API_SERVER=https://asura.opsramp.net/api/v2/tenants
 USER root
 
 WORKDIR /app

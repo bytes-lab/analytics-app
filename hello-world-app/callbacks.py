@@ -3,12 +3,11 @@ import json
 import time
 
 import flask
+import requests
 
 from dash.dependencies import Input, Output, State
 
-
-from utils import *
-from pages.utils import *
+BASE_URL = os.getenv('API_SERVER', '')
 
 
 PLATFORM_ROUTE = os.getenv("PLATFORM_ROUTE", '')
@@ -22,13 +21,23 @@ def register_callbacks(app):
         Input(out_store_id, 'data')
     )
     def get_total_clients(data):
-        tenants = get_tenants()
-        return len(tenants)
+        url = BASE_URL + '/msp_21998/clients/search'
+        res = requests.get(url, verify=False, cookies=flask.request.cookies)
+        total_clients = '-'
+        if res.status_code == 200:
+            total_clients = res.json()['totalResults']
+
+        return total_clients
 
     @app.callback(
         Output('total_resources', 'children'),
         Input(out_store_id, 'data')
     )
     def get_total_resources(data):
-        resource_types = get_resource_types()
-        return len(resource_types)
+        url = BASE_URL + '/msp_21998/resources/search'
+        res = requests.get(url, verify=False, cookies=flask.request.cookies)
+        total_resources = '-'
+        if res.status_code == 200:
+            total_resources = res.json()['totalResults']
+
+        return total_resources
