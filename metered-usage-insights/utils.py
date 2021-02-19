@@ -11,23 +11,26 @@ BASE_URL = os.getenv('API_SERVER', '')
 
 def get_tenants():
     url = BASE_URL + '/metricsql/tenants'
-    res = requests.get(url).json()
+    res = requests.get(url)
+    res.raise_for_status()
 
-    return res
+    return res.json()
 
 
 def get_resource_types():
     url = BASE_URL + '/metricsql/resource-types'
-    res = requests.get(url).json()
+    res = requests.get(url)
+    res.raise_for_status()
 
-    return res
+    return res.json()
 
 
 def get_metric_names():
     url = BASE_URL + '/metricsql/metric-names'
-    res = requests.get(url).json()
+    res = requests.get(url)
+    res.raise_for_status()
 
-    return res
+    return res.json()
 
 
 def get_metric_value(tenant_id, metric_name, function, resource_type=None, start=None, end=None):
@@ -42,9 +45,10 @@ def get_metric_value(tenant_id, metric_name, function, resource_type=None, start
         "end": end
     }
 
-    res = requests.post(url, data=json.dumps(body)).json()
+    res = requests.post(url, data=json.dumps(body))
+    res.raise_for_status()
 
-    return res
+    return res.json()
 
 
 def get_weight_metric(tenant_id, unweighted_metric, weighted_metric, function, resource_type=None, start=None, end=None):
