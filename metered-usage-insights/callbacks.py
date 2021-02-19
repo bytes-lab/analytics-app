@@ -3,7 +3,6 @@ import json
 import time
 
 import flask
-import plotly.graph_objs as go
 
 from dash.dependencies import Input, Output, State
 from analytics_sdk.utilities import (
