@@ -2,6 +2,8 @@ FROM python:3.7-slim
 
 ENV PLATFORM_ROUTE=hello-world-app
 ENV API_SERVER=https://asura.opsramp.net
+ENV REQUIRE_AUTH_REDIRECT=true
+
 USER root
 
 WORKDIR /app
