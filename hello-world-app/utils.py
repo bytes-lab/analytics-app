@@ -2,7 +2,6 @@ import os
 
 import flask
 import requests
-import requests_cache
 
 from analytics_sdk.utilities import (
     BASE_API_URL,
