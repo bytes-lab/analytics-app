@@ -39,7 +39,7 @@ def create_layout(app, embedded=False):
                                                     html.Div(
                                                         [
                                                             html.Div(["-"], id="total_resources", className="font-weight-bold mb-2", style={"font-size": "16px"}),
-                                                            html.P("Resource Types", className="mb-0")
+                                                            html.P("Resources", className="mb-0")
                                                         ],
                                                         className="border border-1 col-6 text-center py-3",
                                                     ),
