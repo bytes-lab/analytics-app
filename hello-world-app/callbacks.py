@@ -20,7 +20,6 @@ def register_callbacks(app):
         total_clients = get_clients_count()
 
         return total_clients
-
     @app.callback(
         Output('total_resources', 'children'),
         Input(out_store_id, 'data')
@@ -29,3 +28,4 @@ def register_callbacks(app):
         total_resources = get_resources_count()
 
         return total_resources
+

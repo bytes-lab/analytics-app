@@ -21,12 +21,12 @@ def create_layout(app, embedded=False):
                                     html.Div(
                                         [
                                             html.H6(
-                                                ["Summary"], className="subtitle padded"
+                                                ["Hello World"], className="subtitle padded"
                                             ),
                                             html.Br(),
-                                            html.Div("This application shows you your OpsRamp usage over the metering period."),
+                                            html.Div("This app demonstrates how to write your first analytics app."),
                                             html.Br(),
-                                            html.Div([html.B("Reporting Peirod"), html.Span("10/1/20 8:00 AM PDT - 10/14/20 8:00 AM PDT", style={"margin-left": "50px"})]),
+                                            html.Div([html.B("Reporting Period"), html.Span("02/25/21 8:00 AM PST - 02/25/21 1:00 AM PST", style={"margin-left": "50px"})]),
                                             html.Div(
                                                 [
                                                     html.Div(
