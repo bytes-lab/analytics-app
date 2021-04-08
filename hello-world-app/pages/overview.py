@@ -26,7 +26,12 @@ def create_layout(app, embedded=False):
                                             html.Br(),
                                             html.Div("This app demonstrates how to write your first analytics app."),
                                             html.Br(),
-                                            html.Div([html.B("Reporting Period"), html.Span("02/25/21 8:00 AM PST - 02/25/21 1:00 AM PST", style={"margin-left": "50px"})]),
+                                            html.Div([
+                                                html.B("Reporting Period"),
+                                                html.Span("02/25/21 8:00 AM PST", id="report-start-date", style={"margin-left": "50px"}),
+                                                html.Span(" - "),
+                                                html.Span("02/25/21 1:00 AM PST", id="report-end-date")
+                                            ]),
                                             html.Div(
                                                 [
                                                     html.Div(

@@ -20,6 +20,7 @@ def register_callbacks(app):
         total_clients = get_clients_count()
 
         return total_clients
+
     @app.callback(
         Output('total_resources', 'children'),
         Input(out_store_id, 'data')
@@ -29,3 +30,18 @@ def register_callbacks(app):
 
         return total_resources
 
+    @app.callback(
+        Output('report-start-date', 'children'),
+        Input('op-filter-start-date', 'data')
+    )
+    def get_filter_start_date(date):
+        print (date, 123)
+        return date
+
+    @app.callback(
+        Output('report-end-date', 'children'),
+        Input('op-filter-end-date', 'data')
+    )
+    def get_filter_end_date(date):
+        print (date, 456)
+        return date
