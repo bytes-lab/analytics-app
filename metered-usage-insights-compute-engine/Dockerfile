@@ -8,6 +8,7 @@ WORKDIR /app
 
 ADD . /app
 
+RUN apk add sqlite
 RUN pip install -r requirements.txt
 
 EXPOSE 8000
