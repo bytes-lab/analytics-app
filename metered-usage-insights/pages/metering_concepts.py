@@ -5,7 +5,6 @@ from pages.utils import *
 
 def create_layout(app, embedded=False):
     return html.Div([
-        NavBar(app) if not embedded else [],
         html.Div(
             [
                 Header(app),
@@ -73,5 +72,4 @@ def create_layout(app, embedded=False):
             ],
             className="page",
         ),
-        get_settings_panel(app)
     ])

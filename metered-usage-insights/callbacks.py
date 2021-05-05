@@ -6,9 +6,6 @@ import flask
 
 from dash.dependencies import Input, Output, State
 from analytics_sdk.utilities import (
-    save_archive,
-    get_archives,
-    get_archive,
     generate_pdf
 )
 
@@ -22,76 +19,8 @@ out_store_id = "_oap_data_out_" + PLATFORM_ROUTE
 oap_name = os.getenv("PLATFORM_ROUTE", 'metered-usage-insight')
 
 def register_callbacks(app):
-    """ Common settings """
-
-    # handle pdf
-    @app.callback(
-        # [
-        #     Output("download-pdf", "children"),
-        #     Output("download-pdf", "href")
-        # ],
-        Output('dummy-store', 'data'),
-        Input('gen-pdf', 'n_clicks'),
-        State(out_store_id, 'data')
-    )
-    def generate_report(n_clicks, data):
-        if n_clicks:  # avoid initial loading
-            print_route = '/full-view'
-            res = generate_pdf(oap_name, data, 'A4', print_route)
-            return res['Location'] 
-
-    # handle archive
-    @app.callback(
-        [
-            Output("list-archives", "options"),
-            Output('list-archives', 'value'),
-        ],
-        Input('gen-archive', 'n_clicks'),
-        State(out_store_id, 'data')
-    )
-    def create_archive(n_clicks, data):
-        archive_id = None
-        if n_clicks:
-            print_route = '/full-view'
-            archive_id = save_archive(oap_name, data, 'A4', print_route)['archive_id']
-
-        archives = get_archives(oap_name)
-
-        return archives, archive_id
-
-    @app.callback(
-        Output(in_store_id, "data"),
-        Input('list-archives', 'value')
-    )
-    def load_archive(archive_id):
-        if not archive_id:
-            return
-
-        archive = get_archive(archive_id)
-
-        return json.loads(archive['state'])
-
-    # save / load settings
-    @app.callback(
-        Output(out_store_id, "data"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
-    )
-    def save_settings(start_date, end_date):
-        return start_date, end_date
-
-    @app.callback(
-        Output("reporting_priod_picker", "start_date"),
-        Output("reporting_priod_picker", "end_date"),
-        Input(in_store_id, "data"),
-    )
-    def load_settings(data):
-        return data if data else [None, None]
 
     # pie charts
-
     pie_graph_layout = dict(
         autosize=True,
         automargin=True,
@@ -125,13 +54,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-total-usage", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def pie_graph_total_usage(start_date, end_date):
-        breakdown_resource_tier = get_breakdown_resource_tier(start_date, end_date)
+    def pie_graph_total_usage(data):
+        breakdown_resource_tier = get_breakdown_resource_tier(data, data)
 
         x_values = []
         y_values = []
@@ -150,13 +76,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-unweighted-usage", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def pie_graph_unweighted_usage(start_date, end_date):
-        breakdown_client = get_breakdown_client(start_date, end_date)
+    def pie_graph_unweighted_usage(data):
+        breakdown_client = get_breakdown_client(data, data)
         clients = sorted(breakdown_client.values(), key=lambda k: -k['unweighted'])
 
         x_values = [ii['name'].title() for ii in clients[:4]] + ['Other']
@@ -172,13 +95,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-weighted-usage", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def pie_graph_weighted_usage(start_date, end_date):
-        breakdown_client = get_breakdown_client(start_date, end_date)
+    def pie_graph_weighted_usage(data):
+        breakdown_client = get_breakdown_client(data, data)
 
         clients = sorted(breakdown_client.values(), key=lambda k: -k['weighted'])
 
@@ -246,13 +166,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-top-10-clients-weighted", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def bar_graph_top_10_clients_weighted(start_date, end_date):
-        breakdown_client = get_breakdown_client(start_date, end_date)
+    def bar_graph_top_10_clients_weighted(data):
+        breakdown_client = get_breakdown_client(data, data)
         clients = sorted(breakdown_client.values(), key=lambda k: -k['weighted'])
 
         bar_data = dict(bar_graph_data)
@@ -268,13 +185,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-bottom-10-clients-weighted", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def bar_graph_bottom_10_clients_weighted(start_date, end_date):
-        breakdown_client = get_breakdown_client(start_date, end_date)
+    def bar_graph_bottom_10_clients_weighted(data):
+        breakdown_client = get_breakdown_client(data, data)
         clients = sorted(breakdown_client.values(), key=lambda k: k['weighted'])
 
         bar_data = dict(bar_graph_data)
@@ -290,13 +204,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-unweighted-type-usage", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def pie_graph_unweighted_type_usage(start_date, end_date):
-        breakdown_resource_type = get_breakdown_resource_type(start_date, end_date)
+    def pie_graph_unweighted_type_usage(data):
+        breakdown_resource_type = get_breakdown_resource_type(data, data)
         resource_types = sorted(breakdown_resource_type.values(), key=lambda k: -k['unweighted'])
 
         x_values = [ii['name'].title() for ii in resource_types]
@@ -312,13 +223,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-top-10-resource-type-weighted", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def bar_graph_top_10_resource_type_weighted(start_date, end_date):
-        breakdown_resource_type = get_breakdown_resource_type(start_date, end_date)
+    def bar_graph_top_10_resource_type_weighted(data):
+        breakdown_resource_type = get_breakdown_resource_type(data, data)
         resource_types = sorted(breakdown_resource_type.values(), key=lambda k: -k['weighted'])
 
         bar_data = dict(bar_graph_data)
@@ -334,13 +242,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-bottom-10-resource-type-weighted", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def bar_graph_bottom_10_resource_type_weighted(start_date, end_date):
-        breakdown_resource_type = get_breakdown_resource_type(start_date, end_date)
+    def bar_graph_bottom_10_resource_type_weighted(data):
+        breakdown_resource_type = get_breakdown_resource_type(data, data)
         resource_types = sorted(breakdown_resource_type.values(), key=lambda k: k['weighted'])
 
         bar_data = dict(bar_graph_data)
@@ -356,15 +261,12 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-weighted-time", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def bar_graph_weighted_time(start_date, end_date):
+    def bar_graph_weighted_time(data):
         start_date = "2021-01-01T00:00:00.0Z"
         end_date = "2021-01-01T00:12:00.0Z"
-        breakdown_time = get_breakdown_time(start_date, end_date)
+        breakdown_time = get_breakdown_time(data, data)
         _breakdown_time = [(key, val) for key, val in breakdown_time.items()]
         _breakdown_time = sorted(_breakdown_time, key=lambda k: k[0])
 
@@ -384,13 +286,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-weighted-type-usage", "figure"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def pie_graph_weighted_type_usage(start_date, end_date):
-        breakdown_resource_type = get_breakdown_resource_type(start_date, end_date)
+    def pie_graph_weighted_type_usage(data):
+        breakdown_resource_type = get_breakdown_resource_type(data, data)
 
         resource_types = sorted(breakdown_resource_type.values(), key=lambda k: -k['weighted'])
 
@@ -407,13 +306,10 @@ def register_callbacks(app):
 
     @app.callback(
         Output("table-resource-type", "children"),
-        [
-            Input("reporting_priod_picker", "start_date"),
-            Input("reporting_priod_picker", "end_date"),
-        ]
+        Input(in_store_id, 'data')
     )
-    def table_resource_type(start_date, end_date):
-        breakdown_resource_tier = get_breakdown_resource_tier(start_date, end_date)
+    def table_resource_type(data):
+        breakdown_resource_tier = get_breakdown_resource_tier(data, data)
         table_rows = [['Resource Tier', 'Usage (Unweighted)', 'Usage (Weighted)']]
 
         total_unweighted = total_weighted = 0
@@ -429,20 +325,16 @@ def register_callbacks(app):
     # api integration
     @app.callback(
         Output('total_clients', 'children'),
-        Input('gen-pdf', 'n_clicks'),
-        State(out_store_id, 'data')
+        Input(in_store_id, 'data')
     )
-    def get_total_clients(n_clicks, data):
-        if not n_clicks:  # initial loading
-            tenants = get_tenants()
-            return len(tenants)
+    def get_total_clients(data):
+        tenants = get_tenants()
+        return len(tenants)
 
     @app.callback(
         Output('total_resources', 'children'),
-        Input('gen-pdf', 'n_clicks'),
-        State(out_store_id, 'data')
+        Input(in_store_id, 'data')
     )
-    def get_total_resources(n_clicks, data):
-        if not n_clicks:  # initial loading
-            resource_types = get_resource_types()
-            return len(resource_types)
+    def get_total_resources(data):
+        resource_types = get_resource_types()
+        return len(resource_types)
