@@ -24,6 +24,9 @@ app = OAPDash(
 )
 server = app.server
 
+# register the compute engine
+app._add_url("compute", compute, ['POST'])
+
 # Describe the layout/ UI of the app
 app.layout = html.Div(
     [

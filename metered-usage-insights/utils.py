@@ -1,6 +1,7 @@
 import os
 import json
 
+import flask
 import requests
 import requests_cache
 
@@ -132,5 +133,22 @@ def get_breakdown_resource_type(start_date, end_date):
                 _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], "avg_over_time", resource_type, start_date, end_date)
                 resp[resource_type]['unweighted'] += _unweighted
                 resp[resource_type]['weighted'] += _weighted
+
+    return resp
+
+
+def compute():
+    data = flask.request.get_json()
+    start_date = data.get('start_date', None)
+    end_date = data.get('end_date', None)
+
+    resp = {
+        'tenants': get_tenants(),
+        'resource_types': get_resource_types(),
+        'breakdown_resource_type': get_breakdown_resource_type(start_date, end_date),
+        'breakdown_client': get_breakdown_client(start_date, end_date),
+        'breakdown_time': get_breakdown_time(start_date, end_date),
+        'breakdown_resource_tier': get_breakdown_resource_tier(start_date, end_date),
+    }
 
     return resp
