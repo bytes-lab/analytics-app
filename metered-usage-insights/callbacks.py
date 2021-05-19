@@ -5,9 +5,6 @@ import time
 import flask
 
 from dash.dependencies import Input, Output, State
-from analytics_sdk.utilities import (
-    generate_pdf
-)
 
 from utils import *
 from pages.utils import *

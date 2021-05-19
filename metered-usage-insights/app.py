@@ -7,6 +7,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from callbacks import register_callbacks
+from utils import compute
 from pages import (
     overview,
     client_breakdown,
