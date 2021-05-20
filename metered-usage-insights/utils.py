@@ -1,52 +1,72 @@
-import os
-import json
-
 import flask
-import requests
 import requests_cache
 
-requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
+# requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
 
-BASE_URL = os.getenv('API_SERVER', '')
-
+from analytics_sdk.utilities import (
+    BASE_API_URL,
+    get_msp_id,
+    call_get_requests
+)
 
 def get_tenants():
-    url = BASE_URL + '/metricsql/tenants'
-    res = requests.get(url)
+    msp_id = get_msp_id()
+    url = BASE_API_URL + f'/api/v2/tenants/{msp_id}/clients/minimal'
+    res = call_get_requests(url, verify=False)
     res.raise_for_status()
 
     return res.json()
 
 
 def get_resource_types():
-    url = BASE_URL + '/metricsql/resource-types'
-    res = requests.get(url)
-    res.raise_for_status()
+    tenants = get_tenants()
+    resource_types = []
 
-    return res.json()
+    for tenant in tenants:
+        tenant_id = tenant['uniqueId']
+        url = BASE_API_URL + f'/metricsql/api/v7/tenants/{tenant_id}/metrics/label/resourceType/values'
+        res = call_get_requests(url, verify=False)
+        res.raise_for_status()
+        resource_types += res.json()['data']
+    
+    return list(set(resource_types))
 
 
 def get_metric_names():
-    url = BASE_URL + '/metricsql/metric-names'
-    res = requests.get(url)
-    res.raise_for_status()
+    metric_names = {
+        "inventoryOnly": {
+            "unweighted": "usage_resource_inventoryOnly_unweighted",
+            "weighted": "usage_resource_inventoryOnly_weighted"
+        },
+        "eventsOnly": {
+            "unweighted": "usage_resource_eventsOnly_unweighted",
+            "weighted": "usage_resource_eventsOnly_weighted"
+        },
+        "upDownOnly": {
+            "unweighted": "usage_resource_upDownOnly_unweighted",
+            "weighted": "usage_resource_upDownOnly_weighted"
+        },
+        "fullyManaged": {
+            "unweighted": "usage_resource_fullyManaged_unweighted",
+            "weighted": "usage_resource_fullyManaged_weighted"
+        }
+    }
 
-    return res.json()
+    return metric_names
 
 
 def get_metric_value(tenant_id, metric_name, function, resource_type=None, start=None, end=None):
-    url = BASE_URL + '/metricql/query'
+    url = BASE_API_URL + f'/metricsql/api/v7/tenants/{tenant_id}/metrics'
 
-    body = {
-        "tenantId": tenant_id,
-        "metricName": metric_name,
-        "resourceType": resource_type,
+    params = {
+        "query": metric_name,
+        "rType": resource_type,
         "function": function,
-        "start": start,
-        "end": end
+        "start": 1619867599,  # start,
+        "end": 1621509199  # end
     }
 
-    res = requests.post(url, data=json.dumps(body))
+    res = call_get_requests(url, params, verify=False)
     res.raise_for_status()
 
     return res.json()
@@ -54,12 +74,22 @@ def get_metric_value(tenant_id, metric_name, function, resource_type=None, start
 
 def get_weight_metric(tenant_id, unweighted_metric, weighted_metric, function, resource_type=None, start=None, end=None):
     unweighted = get_metric_value(tenant_id, unweighted_metric, function, resource_type, start, end)
+    print(unweighted, 111)
     weighted = get_metric_value(tenant_id, weighted_metric, function, resource_type, start, end)
-    _unweighted = unweighted['data']['result'][0]['values']
-    _weighted = weighted['data']['result'][0]['values']
+    print(weighted, 222)
+
+    _unweighted = 0
+    _weighted = 0
+
+    if unweighted['status'] == 'success' and unweighted['data']['result']:
+        _unweighted = unweighted['data']['result'][0]['values']
+
+    if weighted['status'] == 'success' and weighted['data']['result']:
+        _weighted = weighted['data']['result'][0]['values']
 
     if function == "avg_over_time":
-        return _unweighted[0], _weighted[0]
+        return _unweighted, _weighted
+        # return _unweighted[0], _weighted[0]
     else:
         return _unweighted, _weighted
 
@@ -73,7 +103,7 @@ def get_breakdown_resource_tier(start_date, end_date):
         resp[metric_name] = { 'unweighted': 0, 'weighted': 0 }
 
         for tenant in tenants:
-            tenant_id = tenant['tenantId']
+            tenant_id = tenant['uniqueId']
             _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], "avg_over_time", None, start_date, end_date)
             resp[metric_name]['unweighted'] += _unweighted
             resp[metric_name]['weighted'] += _weighted
@@ -88,15 +118,16 @@ def get_breakdown_time(start_date, end_date):
 
     for metric_name, types in metric_names.items():
         for tenant in tenants:
-            tenant_id = tenant['tenantId']
+            tenant_id = tenant['uniqueId']
             weighted = get_metric_value(tenant_id, types['weighted'], "raw", None, start_date, end_date)
-            values = weighted['data']['result'][0]['values']
+            if weighted['status'] == 'success' and weighted['data']['result']:
+                values = weighted['data']['result'][0]['values']
 
-            for value in values:
-                if value[0] in resp:  # EPOC
-                    resp[value[0]] += value[1]
-                else:
-                    resp[value[0]] = 0
+                for value in values:
+                    if value[0] in resp:  # EPOC
+                        resp[value[0]] += value[1]
+                    else:
+                        resp[value[0]] = 0
 
     return resp
 
@@ -107,8 +138,8 @@ def get_breakdown_client(start_date, end_date):
     resp = {}
 
     for tenant in tenants:
-        tenant_id = tenant['tenantId']
-        resp[tenant_id] = { 'name': tenant['tenantName'], 'unweighted': 0, 'weighted': 0 }
+        tenant_id = tenant['uniqueId']
+        resp[tenant_id] = { 'name': tenant['name'], 'unweighted': 0, 'weighted': 0 }
 
         for metric_name, types in metric_names.items():
             _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], "avg_over_time", None, start_date, end_date)
@@ -129,7 +160,7 @@ def get_breakdown_resource_type(start_date, end_date):
 
         for metric_name, types in metric_names.items():
             for tenant in tenants:
-                tenant_id = tenant['tenantId']
+                tenant_id = tenant['uniqueId']
                 _unweighted, _weighted = get_weight_metric(tenant_id, types['unweighted'], types['weighted'], "avg_over_time", resource_type, start_date, end_date)
                 resp[resource_type]['unweighted'] += _unweighted
                 resp[resource_type]['weighted'] += _weighted
