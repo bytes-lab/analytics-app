@@ -13,7 +13,9 @@ def get_tenants():
     msp_id = get_msp_id()
     url = BASE_API_URL + f'/api/v2/tenants/{msp_id}/clients/minimal'
     res = call_get_requests(url, verify=False)
-    res.raise_for_status()
+    
+    if not res.ok:
+        return []
 
     return res.json()
 
@@ -26,7 +28,10 @@ def get_resource_types():
         tenant_id = tenant['uniqueId']
         url = BASE_API_URL + f'/metricsql/api/v7/tenants/{tenant_id}/metrics/label/resourceType/values'
         res = call_get_requests(url, verify=False)
-        res.raise_for_status()
+
+        if not res.ok:
+            continue
+
         resource_types += res.json()['data']
     
     return list(set(resource_types))
@@ -68,7 +73,10 @@ def get_metric_value(tenant_id, metric_name, function, resource_type=None, start
     }
 
     res = call_get_requests(url, params, verify=False)
-    res.raise_for_status()
+
+    if not res.ok:
+        return {"status": "fail"}
+
     return res.json()
 
 
