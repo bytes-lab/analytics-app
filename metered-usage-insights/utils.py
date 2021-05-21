@@ -35,20 +35,20 @@ def get_resource_types():
 def get_metric_names():
     metric_names = {
         "inventoryOnly": {
-            "unweighted": "usage_resource_inventoryOnly_unweighted",
-            "weighted": "usage_resource_inventoryOnly_weighted"
+            "unweighted": "usage_resource_InventoryOnly_unweighted",
+            "weighted": "usage_resource_InventoryOnly_weighted"
         },
         "eventsOnly": {
-            "unweighted": "usage_resource_eventsOnly_unweighted",
-            "weighted": "usage_resource_eventsOnly_weighted"
+            "unweighted": "usage_resource_EventsOnly_unweighted",
+            "weighted": "usage_resource_EventsOnly_weighted"
         },
         "upDownOnly": {
-            "unweighted": "usage_resource_upDownOnly_unweighted",
-            "weighted": "usage_resource_upDownOnly_weighted"
+            "unweighted": "usage_resource_UpDownOnly_unweighted",
+            "weighted": "usage_resource_UpDownOnly_weighted"
         },
         "fullyManaged": {
-            "unweighted": "usage_resource_fullyManaged_unweighted",
-            "weighted": "usage_resource_fullyManaged_weighted"
+            "unweighted": "usage_resource_FullyManaged_unweighted",
+            "weighted": "usage_resource_FullyManaged_weighted"
         }
     }
 
@@ -64,23 +64,20 @@ def get_metric_value(tenant_id, metric_name, function, resource_type=None, start
         "query": metric,
         "start": 1613887988,  # start,
         "end": 1621509199,  # end
-        "encoded": "true"
+        "encode": "true"  # optional
     }
 
     res = call_get_requests(url, params, verify=False)
     res.raise_for_status()
-    print(res.__dict__, 333)
     return res.json()
 
 
 def get_weight_metric(tenant_id, unweighted_metric, weighted_metric, function, resource_type=None, start=None, end=None):
     unweighted = get_metric_value(tenant_id, unweighted_metric, function, resource_type, start, end)
-    print(unweighted, 111)
     weighted = get_metric_value(tenant_id, weighted_metric, function, resource_type, start, end)
-    print(weighted, 222)
 
-    _unweighted = 0
-    _weighted = 0
+    _unweighted = []
+    _weighted = []
 
     if unweighted['status'] == 'success' and unweighted['data']['result']:
         _unweighted = unweighted['data']['result'][0]['values']
@@ -89,8 +86,7 @@ def get_weight_metric(tenant_id, unweighted_metric, weighted_metric, function, r
         _weighted = weighted['data']['result'][0]['values']
 
     if function == "avg":
-        return _unweighted, _weighted
-        # return _unweighted[0], _weighted[0]
+        return sum([float(ii[1]) for ii in _unweighted]), sum([float(ii[1]) for ii in _weighted])
     else:
         return _unweighted, _weighted
 
@@ -126,9 +122,9 @@ def get_breakdown_time(start_date, end_date):
 
                 for value in values:
                     if value[0] in resp:  # EPOC
-                        resp[value[0]] += value[1]
+                        resp[value[0]] += float(value[1])
                     else:
-                        resp[value[0]] = 0
+                        resp[value[0]] = float(value[1])
 
     return resp
 
