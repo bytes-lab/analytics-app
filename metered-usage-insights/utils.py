@@ -1,7 +1,7 @@
 import flask
 import requests_cache
 
-# requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
+requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
 
 from analytics_sdk.utilities import (
     BASE_API_URL,
