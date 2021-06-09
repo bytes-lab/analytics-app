@@ -15,7 +15,7 @@ from pages import (
     metering_concepts,
 )
 
-PLATFORM_ROUTE = os.getenv("PLATFORM_ROUTE", 'metered-usage-insights')
+PLATFORM_ROUTE = os.getenv("PLATFORM_ROUTE", '')
 
 app = OAPDash(
     name=__name__,
