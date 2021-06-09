@@ -1,9 +1,9 @@
 FROM python:3.7-slim
 
-ENV PLATFORM_ROUTE=metered-usage-insight
+ENV PLATFORM_ROUTE=analytics-apps
 ENV PDF_SERVER=http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/pdf-server/generate-report
 ENV VIEW_SERVICE=http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/view-service
-ENV API_SERVER=https://localhost
+ENV API_SERVER=https://asura.opsramp.net
 ENV INCLUDE_WRAPPER=true
 ENV ON_PROXY=true
 
@@ -15,6 +15,6 @@ ADD . /app
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8000
+EXPOSE 8050
 
-CMD ["gunicorn", "--workers=2", "app:server", "-b 0.0.0.0:8000"]
+CMD ["gunicorn", "--workers=2", "app:server", "-b 0.0.0.0:8050"]
