@@ -5,6 +5,7 @@ ENV PDF_SERVER=http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/p
 ENV VIEW_SERVICE=http://don-mk8s-lb-3c9b790ca6219e7e.elb.us-west-1.amazonaws.com/view-service
 ENV API_SERVER=https://localhost
 ENV INCLUDE_WRAPPER=true
+ENV ON_PROXY=true
 
 USER root
 
