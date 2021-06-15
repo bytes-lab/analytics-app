@@ -1,13 +1,21 @@
-import flask
-import requests_cache
+import os
+import json
+from datetime import datetime
 
-requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
+import flask
+import requests
+import requests_cache
 
 from analytics_sdk.utilities import (
     BASE_API_URL,
     get_msp_id,
     call_get_requests
 )
+
+requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
+
+APP_SERVICE_BASE_URL = os.getenv('APP_SERVICE_BASE_URL', '')
+
 
 def get_tenants():
     msp_id = get_msp_id()
@@ -173,11 +181,7 @@ def get_breakdown_resource_type(start_date, end_date):
     return resp
 
 
-def compute():
-    data = flask.request.get_json()
-    start_date = data.get('start_date', None)
-    end_date = data.get('end_date', None)
-
+def _compute(start_date, end_date):
     resp = {
         'tenants': get_tenants(),
         'resource_types': get_resource_types(),
@@ -185,6 +189,48 @@ def compute():
         'breakdown_client': get_breakdown_client(start_date, end_date),
         'breakdown_time': get_breakdown_time(start_date, end_date),
         'breakdown_resource_tier': get_breakdown_resource_tier(start_date, end_date),
+    }
+
+    return resp
+
+
+def compute():
+    params = flask.request.get_json()
+    start_date = params.get('start_date', None)
+    end_date = params.get('end_date', None)
+
+    # analysis
+    url = APP_SERVICE_BASE_URL + '/api/v1/analyses/'
+    data = {
+        'name': 'North America',
+        'params': json.dumps(params),
+        'app': '32a1bc14-c471-46a4-9b0a-835b4b80e58f'
+    }
+
+    analysis = requests.post(url, data).json()
+
+    # analysis run
+    url = APP_SERVICE_BASE_URL + '/api/v1/analysis-runs/'
+    data = {
+        'analysis': analysis['id']
+    }
+
+    analysis_run = requests.post(url, data).json()
+
+    # run compute
+    result = _compute(start_date, end_date)
+
+    # update the run
+    url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/{analysis_run["id"]}/'
+    data = {
+        'date_completed': datetime.now().strftime('%Y-%m-%dT%H:%M:%S'),
+        'result': json.dumps(result)
+    }
+    analysis_run = requests.patch(url, data).json()
+
+    resp = {
+        'analysis': analysis['id'],
+        'analysis-run': analysis_run['id']
     }
 
     return resp
