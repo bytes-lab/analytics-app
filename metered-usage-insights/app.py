@@ -25,6 +25,9 @@ app = OAPDash(
 )
 server = app.server
 
+from flask_cors import CORS
+CORS(app.server)
+
 # register the compute engine
 app._add_url("compute", compute, ['POST'])
 
