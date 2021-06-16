@@ -7,7 +7,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from callbacks import register_callbacks
-from utils import compute
+from engine import compute
 from pages import (
     overview,
     client_breakdown,
@@ -24,6 +24,7 @@ app = OAPDash(
     route=PLATFORM_ROUTE
 )
 server = app.server
+app.server.secret_key = 'super secret key'
 
 from flask_cors import CORS
 CORS(app.server)

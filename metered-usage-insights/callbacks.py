@@ -1,8 +1,5 @@
 import os
-import json
 import time
-
-import flask
 
 from dash.dependencies import Input, Output, State
 
@@ -53,8 +50,8 @@ def register_callbacks(app):
         Output("pie-graph-total-usage", "figure"),
         Input(in_store_id, 'data')
     )
-    def pie_graph_total_usage(data):
-        breakdown_resource_tier = get_breakdown_resource_tier(data, data)
+    def pie_graph_total_usage(run_id):
+        breakdown_resource_tier = get_breakdown_resource_tier(run_id)
 
         x_values = []
         y_values = []
@@ -75,8 +72,8 @@ def register_callbacks(app):
         Output("pie-graph-unweighted-usage", "figure"),
         Input(in_store_id, 'data')
     )
-    def pie_graph_unweighted_usage(data):
-        breakdown_client = get_breakdown_client(data, data)
+    def pie_graph_unweighted_usage(run_id):
+        breakdown_client = get_breakdown_client(run_id)
         clients = sorted(breakdown_client.values(), key=lambda k: -k['unweighted'])
 
         x_values = [ii['name'].title() for ii in clients[:4]] + ['Other']
@@ -94,8 +91,8 @@ def register_callbacks(app):
         Output("pie-graph-weighted-usage", "figure"),
         Input(in_store_id, 'data')
     )
-    def pie_graph_weighted_usage(data):
-        breakdown_client = get_breakdown_client(data, data)
+    def pie_graph_weighted_usage(run_id):
+        breakdown_client = get_breakdown_client(run_id)
 
         clients = sorted(breakdown_client.values(), key=lambda k: -k['weighted'])
 
@@ -165,8 +162,8 @@ def register_callbacks(app):
         Output("bar-graph-top-10-clients-weighted", "figure"),
         Input(in_store_id, 'data')
     )
-    def bar_graph_top_10_clients_weighted(data):
-        breakdown_client = get_breakdown_client(data, data)
+    def bar_graph_top_10_clients_weighted(run_id):
+        breakdown_client = get_breakdown_client(run_id)
         clients = sorted(breakdown_client.values(), key=lambda k: -k['weighted'])
 
         bar_data = dict(bar_graph_data)
@@ -184,8 +181,8 @@ def register_callbacks(app):
         Output("bar-graph-bottom-10-clients-weighted", "figure"),
         Input(in_store_id, 'data')
     )
-    def bar_graph_bottom_10_clients_weighted(data):
-        breakdown_client = get_breakdown_client(data, data)
+    def bar_graph_bottom_10_clients_weighted(run_id):
+        breakdown_client = get_breakdown_client(run_id)
         clients = sorted(breakdown_client.values(), key=lambda k: k['weighted'])
 
         bar_data = dict(bar_graph_data)
@@ -203,8 +200,8 @@ def register_callbacks(app):
         Output("pie-graph-unweighted-type-usage", "figure"),
         Input(in_store_id, 'data')
     )
-    def pie_graph_unweighted_type_usage(data):
-        breakdown_resource_type = get_breakdown_resource_type(data, data)
+    def pie_graph_unweighted_type_usage(run_id):
+        breakdown_resource_type = get_breakdown_resource_type(run_id)
         resource_types = sorted(breakdown_resource_type.values(), key=lambda k: -k['unweighted'])
 
         x_values = [ii['name'].title() for ii in resource_types]
@@ -222,8 +219,8 @@ def register_callbacks(app):
         Output("bar-graph-top-10-resource-type-weighted", "figure"),
         Input(in_store_id, 'data')
     )
-    def bar_graph_top_10_resource_type_weighted(data):
-        breakdown_resource_type = get_breakdown_resource_type(data, data)
+    def bar_graph_top_10_resource_type_weighted(run_id):
+        breakdown_resource_type = get_breakdown_resource_type(run_id)
         resource_types = sorted(breakdown_resource_type.values(), key=lambda k: -k['weighted'])
 
         bar_data = dict(bar_graph_data)
@@ -241,8 +238,8 @@ def register_callbacks(app):
         Output("bar-graph-bottom-10-resource-type-weighted", "figure"),
         Input(in_store_id, 'data')
     )
-    def bar_graph_bottom_10_resource_type_weighted(data):
-        breakdown_resource_type = get_breakdown_resource_type(data, data)
+    def bar_graph_bottom_10_resource_type_weighted(run_id):
+        breakdown_resource_type = get_breakdown_resource_type(run_id)
         resource_types = sorted(breakdown_resource_type.values(), key=lambda k: k['weighted'])
 
         bar_data = dict(bar_graph_data)
@@ -260,10 +257,8 @@ def register_callbacks(app):
         Output("bar-graph-weighted-time", "figure"),
         Input(in_store_id, 'data')
     )
-    def bar_graph_weighted_time(data):
-        start_date = "2021-01-01T00:00:00.0Z"
-        end_date = "2021-01-01T00:12:00.0Z"
-        breakdown_time = get_breakdown_time(data, data)
+    def bar_graph_weighted_time(run_id):
+        breakdown_time = get_breakdown_time(run_id)
         _breakdown_time = [(key, val) for key, val in breakdown_time.items()]
         _breakdown_time = sorted(_breakdown_time, key=lambda k: k[0])
 
@@ -285,8 +280,8 @@ def register_callbacks(app):
         Output("pie-graph-weighted-type-usage", "figure"),
         Input(in_store_id, 'data')
     )
-    def pie_graph_weighted_type_usage(data):
-        breakdown_resource_type = get_breakdown_resource_type(data, data)
+    def pie_graph_weighted_type_usage(run_id):
+        breakdown_resource_type = get_breakdown_resource_type(run_id)
 
         resource_types = sorted(breakdown_resource_type.values(), key=lambda k: -k['weighted'])
 
@@ -305,8 +300,8 @@ def register_callbacks(app):
         Output("table-resource-type", "children"),
         Input(in_store_id, 'data')
     )
-    def table_resource_type(data):
-        breakdown_resource_tier = get_breakdown_resource_tier(data, data)
+    def table_resource_type(run_id):
+        breakdown_resource_tier = get_breakdown_resource_tier(run_id)
         table_rows = [['Resource Tier', 'Usage (Unweighted)', 'Usage (Weighted)']]
 
         total_unweighted = total_weighted = 0
@@ -324,14 +319,14 @@ def register_callbacks(app):
         Output('total_clients', 'children'),
         Input(in_store_id, 'data')
     )
-    def get_total_clients(data):
-        tenants = get_tenants()
+    def get_total_clients(run_id):
+        tenants = get_tenants(run_id)
         return len(tenants)
 
     @app.callback(
         Output('total_resources', 'children'),
         Input(in_store_id, 'data')
     )
-    def get_total_resources(data):
-        resource_types = get_resource_types()
+    def get_total_resources(run_id):
+        resource_types = get_resource_types(run_id)
         return len(resource_types)
