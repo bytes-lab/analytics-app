@@ -26,8 +26,8 @@ app = OAPDash(
 server = app.server
 app.server.secret_key = 'super secret key'
 
-from flask_cors import CORS
-CORS(app.server)
+# from flask_cors import CORS
+# CORS(app.server)
 
 # register the compute engine
 app._add_url("compute", compute, ['POST'])

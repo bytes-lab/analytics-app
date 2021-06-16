@@ -30,7 +30,6 @@ def get_tenants():
 
 
 def get_resource_types():
-    print(flask.session.get('5ba2ed1b-4d9d-4e3c-992a-b97927c0f56a'), '-'*20)
     tenants = get_tenants()
     resource_types = []
 

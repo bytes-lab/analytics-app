@@ -1,4 +1,6 @@
 import os
+import json
+
 import flask
 import requests
 
@@ -6,22 +8,32 @@ APP_SERVICE_BASE_URL = os.getenv('APP_SERVICE_BASE_URL', '')
 
 
 def get_run_result(run_id):
-    print(run_id, '*'*20)
-    if run_id:
-        result = flask.session.get(run_id)
-        if not result:
-            url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/{run_id}/'
-            analysis_run = requests.get(url).json()
-            result = analysis_run['result']
-    else:
-        analysis_id = 'ba566d3c-6fae-4c3f-9803-8e2ceb8b3c04'
-        url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/latest/?anaysis={analysis_id}'
-        analysis_run = requests.get(url).json()
+    print(run_id, 111)
 
-        if analysis_run:
-            result = analysis_run['result']
+    def _get_run_result(url):
+        resp = requests.get(url)
+        analysis_run = resp.json()
+
+        if resp.ok and analysis_run:
+            flask.session[run_id] = json.dumps(analysis_run['result'])
+            result = json.loads(analysis_run['result'])
         else:
             result = {}
+        
+        return result
+        
+    if run_id:
+        str_result = flask.session.get(run_id)
+
+        if str_result:
+            result = json.loads(str_result)
+        else:
+            url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/{run_id}/'
+            result = _get_run_result(url)
+    else:
+        analysis_id = 'ba566d3c-6fae-4c3f-9803-8e2ceb8b3c04'
+        url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/latest/?analysis={analysis_id}'
+        result = _get_run_result(url)
 
     return result
 
