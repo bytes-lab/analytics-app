@@ -15,7 +15,7 @@ def get_run_result(run_id):
         analysis_run = resp.json()
 
         if resp.ok and analysis_run:
-            flask.session[run_id] = json.dumps(analysis_run['result'])
+            flask.session[run_id] = analysis_run['result']  # str
             result = json.loads(analysis_run['result'])
         else:
             result = {}
@@ -24,7 +24,6 @@ def get_run_result(run_id):
         
     if run_id:
         str_result = flask.session.get(run_id)
-
         if str_result:
             result = json.loads(str_result)
         else:
