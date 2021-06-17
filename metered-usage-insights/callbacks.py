@@ -1,16 +1,10 @@
-import os
 import time
 
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 
 from utils import *
 from pages.utils import *
 
-
-PLATFORM_ROUTE = os.getenv("PLATFORM_ROUTE", '')
-in_store_id = "_oap_data_in_" + PLATFORM_ROUTE
-out_store_id = "_oap_data_out_" + PLATFORM_ROUTE
-oap_name = os.getenv("PLATFORM_ROUTE", 'metered-usage-insight')
 
 def register_callbacks(app):
 
@@ -48,7 +42,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-total-usage", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def pie_graph_total_usage(run_id):
         breakdown_resource_tier = get_breakdown_resource_tier(run_id)
@@ -70,7 +64,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-unweighted-usage", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def pie_graph_unweighted_usage(run_id):
         breakdown_client = get_breakdown_client(run_id)
@@ -89,7 +83,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-weighted-usage", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def pie_graph_weighted_usage(run_id):
         breakdown_client = get_breakdown_client(run_id)
@@ -160,7 +154,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-top-10-clients-weighted", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def bar_graph_top_10_clients_weighted(run_id):
         breakdown_client = get_breakdown_client(run_id)
@@ -179,7 +173,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-bottom-10-clients-weighted", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def bar_graph_bottom_10_clients_weighted(run_id):
         breakdown_client = get_breakdown_client(run_id)
@@ -198,7 +192,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-unweighted-type-usage", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def pie_graph_unweighted_type_usage(run_id):
         breakdown_resource_type = get_breakdown_resource_type(run_id)
@@ -217,7 +211,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-top-10-resource-type-weighted", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def bar_graph_top_10_resource_type_weighted(run_id):
         breakdown_resource_type = get_breakdown_resource_type(run_id)
@@ -236,7 +230,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-bottom-10-resource-type-weighted", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def bar_graph_bottom_10_resource_type_weighted(run_id):
         breakdown_resource_type = get_breakdown_resource_type(run_id)
@@ -255,7 +249,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("bar-graph-weighted-time", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def bar_graph_weighted_time(run_id):
         breakdown_time = get_breakdown_time(run_id)
@@ -278,7 +272,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("pie-graph-weighted-type-usage", "figure"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def pie_graph_weighted_type_usage(run_id):
         breakdown_resource_type = get_breakdown_resource_type(run_id)
@@ -298,7 +292,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output("table-resource-type", "children"),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def table_resource_type(run_id):
         breakdown_resource_tier = get_breakdown_resource_tier(run_id)
@@ -317,7 +311,7 @@ def register_callbacks(app):
     # api integration
     @app.callback(
         Output('total_clients', 'children'),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def get_total_clients(run_id):
         tenants = get_tenants(run_id)
@@ -325,7 +319,7 @@ def register_callbacks(app):
 
     @app.callback(
         Output('total_resources', 'children'),
-        Input(in_store_id, 'data')
+        Input(app.in_store_id, 'data')
     )
     def get_total_resources(run_id):
         resource_types = get_resource_types(run_id)
