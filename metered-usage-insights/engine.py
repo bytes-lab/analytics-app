@@ -195,28 +195,18 @@ def _compute(start_date, end_date):
     return resp
 
 
-APP_ID = '32a1bc14-c471-46a4-9b0a-835b4b80e58f'
-
-
 def compute():
     params = flask.request.get_json()
     start_date = params.get('start_date', None)
     end_date = params.get('end_date', None)
 
-    # analysis
-    url = APP_SERVICE_BASE_URL + '/api/v1/analyses/'
-    data = {
-        'name': 'North America',
-        'params': json.dumps(params),
-        'app': APP_ID
-    }
-
-    analysis = requests.post(url, data).json()
+    analysis_id = '900065f2-12d9-4cee-874d-e246f1e4a67f'
 
     # analysis run
     url = APP_SERVICE_BASE_URL + '/api/v1/analysis-runs/'
     data = {
-        'analysis': analysis['id']
+        'analysis': analysis_id,
+        'params': json.dumps(params),
     }
 
     analysis_run = requests.post(url, data).json()
@@ -234,7 +224,7 @@ def compute():
     analysis_run = requests.patch(url, data).json()
 
     resp = {
-        'analysis': analysis['id'],
+        'analysis': analysis_id,
         'analysis-run': analysis_run['id']
     }
 
