@@ -8,14 +8,13 @@ APP_SERVICE_BASE_URL = os.getenv('APP_SERVICE_BASE_URL', '')
 
 
 def get_run_result(run_id):
-    print(run_id, 111)
 
     def _get_run_result(url):
         resp = requests.get(url)
         analysis_run = resp.json()
 
         if resp.ok and analysis_run:
-            flask.session[run_id] = json.dumps(analysis_run['result'])  # str
+            flask.session[run_id] = json.dumps(analysis_run['result'])
             result = analysis_run['result']
         else:
             result = {}

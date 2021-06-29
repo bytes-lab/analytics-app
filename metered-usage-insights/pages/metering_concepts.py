@@ -37,10 +37,10 @@ def create_layout(app, embedded=False):
                                         html.Br([]),
                                         html.Div(
                                             [
-                                                html.Li([html.B("Inventory-only resource: "), html.Span("a resource that is discovered and tracked by Opsramp as an asset, but is not monitored by Opsramp.")]),
-                                                html.Li([html.B("Events-only resource: "), html.Span("a resource that is monitored by a 3rd party tool, from which Opsramp ingests only events, but not metrics")]),
-                                                html.Li([html.B("Up-down-only resource: "), html.Span("a resource that is monitored by Opsramp only for availability (up/down) status via network ping.")]),
-                                                html.Li([html.B("Fully-managed resource: "), html.Span("a resource from which Opsramp collects multiple metrics for monitoring.")])
+                                                html.Li([html.B("Inventory-only resource: "), html.Span("a resource that is discovered and tracked by Opsramp as an asset, but is not monitored by Opsramp.")], className="mb-4"),
+                                                html.Li([html.B("Events-only resource: "), html.Span("a resource that is monitored by a 3rd party tool, from which Opsramp ingests only events, but not metrics")], className="mb-4"),
+                                                html.Li([html.B("Up-down-only resource: "), html.Span("a resource that is monitored by Opsramp only for availability (up/down) status via network ping.")], className="mb-4"),
+                                                html.Li([html.B("Fully-managed resource: "), html.Span("a resource from which Opsramp collects multiple metrics for monitoring.")], className="mb-4")
                                             ],
                                             id="reviews-bullet-pts",
                                             className="ml-4"

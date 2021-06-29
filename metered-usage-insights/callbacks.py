@@ -253,7 +253,7 @@ def register_callbacks(app):
     )
     def bar_graph_weighted_time(run_id):
         breakdown_time = get_breakdown_time(run_id)
-        _breakdown_time = [(key, val) for key, val in breakdown_time.items()]
+        _breakdown_time = [(int(key), val) for key, val in breakdown_time.items()]
         _breakdown_time = sorted(_breakdown_time, key=lambda k: k[0])
 
         bar_data = {
