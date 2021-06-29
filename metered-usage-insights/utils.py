@@ -29,9 +29,7 @@ def get_run_result(run_id):
             url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/{run_id}/'
             result = _get_run_result(url)
     else:
-        analysis_id = 'ba566d3c-6fae-4c3f-9803-8e2ceb8b3c04'
-        url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/latest/?analysis={analysis_id}'
-        result = _get_run_result(url)
+        result = {}
 
     return result
 
