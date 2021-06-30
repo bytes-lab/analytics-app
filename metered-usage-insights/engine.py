@@ -12,7 +12,7 @@ from analytics_sdk.utilities import (
     call_get_requests
 )
 
-requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
+# requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
 
 APP_SERVICE_BASE_URL = os.getenv('APP_SERVICE_BASE_URL', '')
 
@@ -22,7 +22,7 @@ def get_tenants():
     msp_id = get_msp_id()
     url = BASE_API_URL + f'/api/v2/tenants/{msp_id}/clients/minimal'
     res = call_get_requests(url, verify=False)
-    
+    print(res, 123)
     if not res.ok:
         return []
 

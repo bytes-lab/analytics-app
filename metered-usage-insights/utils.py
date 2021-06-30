@@ -1,37 +1,4 @@
-import os
-import json
-
-import flask
-import requests
-
-APP_SERVICE_BASE_URL = os.getenv('APP_SERVICE_BASE_URL', '')
-
-
-def get_run_result(run_id):
-
-    def _get_run_result(url):
-        resp = requests.get(url)
-        analysis_run = resp.json()
-
-        if resp.ok and analysis_run:
-            flask.session[run_id] = json.dumps(analysis_run['result'])
-            result = analysis_run['result']
-        else:
-            result = {}
-        
-        return result
-        
-    if run_id:
-        str_result = flask.session.get(run_id)
-        if str_result:
-            result = json.loads(str_result)
-        else:
-            url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/{run_id}/'
-            result = _get_run_result(url)
-    else:
-        result = {}
-
-    return result
+from analytics_sdk.utilities import get_run_result
 
 
 def get_tenants(run_id):
