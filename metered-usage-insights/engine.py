@@ -199,8 +199,7 @@ def compute():
     params = flask.request.get_json()
     start_date = params.get('start_date', None)
     end_date = params.get('end_date', None)
-
-    analysis_id = '900065f2-12d9-4cee-874d-e246f1e4a67f'
+    analysis_id = params.get('analysis_id', None)
 
     # analysis run
     url = APP_SERVICE_BASE_URL + '/api/v1/analysis-runs/'
@@ -210,22 +209,23 @@ def compute():
     }
 
     analysis_run = requests.post(url, data).json()
+    run_id = analysis_run["id"]
 
     # run compute
     result = _compute(start_date, end_date)
-    flask.session[analysis_run['id']] = json.dumps(result)
+    flask.session[run_id] = json.dumps(result)
 
     # update the run
-    url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/{analysis_run["id"]}/'
+    url = APP_SERVICE_BASE_URL + f'/api/v1/analysis-runs/{run_id}/'
     data = {
         'date_completed': datetime.now().strftime('%Y-%m-%dT%H:%M:%S'),
         'result': json.dumps(result)
     }
-    analysis_run = requests.patch(url, data).json()
+    requests.patch(url, data).json()
 
     resp = {
         'analysis': analysis_id,
-        'analysis-run': analysis_run['id']
+        'analysis-run': run_id
     }
 
     return resp
