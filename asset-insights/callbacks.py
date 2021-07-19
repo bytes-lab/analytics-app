@@ -218,7 +218,23 @@ def register_callbacks(app):
         return figure
 
         
-        
+    breakdown_pie_graph_layout = dict(
+        autosize=True,
+        automargin=True,
+        height=150,
+        margin=dict(l=30, r=300, b=00, t=00),
+        hovermode="closest",
+        plot_bgcolor="#F9F9F9",
+        paper_bgcolor="#fff",
+        font=dict(color="#777777"),
+        legend=dict(
+            font=dict(color="#333", size="10"),
+            orientation="v",
+            bgcolor="rgba(0,0,0,0)",
+            y=0.8),
+        title=""
+    )
+
     #Breakdown by operating system (servers)
     @app.callback(
         Output("pie-graph-breakdown-operating-system", "figure"),
@@ -234,7 +250,7 @@ def register_callbacks(app):
         data['labels'] = x_values
         data['values'] = y_values
 
-        figure = dict(data=[data], layout=pie_graph_layout)
+        figure = dict(data=[data], layout=breakdown_pie_graph_layout)
 
         return figure
     
