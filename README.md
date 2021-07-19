@@ -111,3 +111,14 @@ You will need to add:
 extra_hosts:
 
   -  'host.docker.internal:172.17.0.1'  #host and ip
+
+### Deploy
+It is pushed to a [Harbor Repository](https://hub.opsramp.com/harbor/projects/5/repositories) and a [helm chart](https://hub.opsramp.com/harbor/projects/5/helm-charts) is ready for it.
+
+It can be deployed using the help chart on the server.
+
+```
+helm repo update
+helm install metered-usage-insight opsramp-analytics-apps/metered-usage-insight
+helm upgrade metered-usage-insight opsramp-analytics-apps/metered-usage-insight
+```
