@@ -1,5 +1,5 @@
 
-## Notes on the Metered Usage Insights python app
+## Analytics Apps
 
 ### Setup/Installation (Local)
 
@@ -26,7 +26,8 @@ Set the following variables:
 -   PLATFORM_ROUTE=analytics-apps (this is required for proper routing to assets when running in portal)
 -   INCLUDE_WRAPPER=true (this is required for the sidebar to show)
 -   ON_PROXY=true (this is required for connecting api service)
--   API_SERVER=[https://asura.opsramp.net](https://asura.opsramp.net)
+-   DATA_API_BASE_URL=[https://asura.opsramp.net](https://asura.opsramp.net)
+-   APP_SERVICE_BASE_URL=http://13.57.187.238:8001 (analysis api service)
 
 **Setting a variable:** export PLATFORM_ROUTE=analytics-apps
 
