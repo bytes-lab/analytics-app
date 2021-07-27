@@ -117,6 +117,8 @@ It is pushed to a [Harbor Repository](https://hub.opsramp.com/harbor/projects/5/
 
 It can be deployed using the help chart on the server.
 
+_(Use ```microk8s helm3``` instead of ```helm``` for micro kubernetes)_
+
 ```
 helm repo add opsramp-analytics-apps https://hub.opsramp.com/chartrepo/analytics-apps
 helm repo update
