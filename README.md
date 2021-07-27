@@ -118,6 +118,7 @@ It is pushed to a [Harbor Repository](https://hub.opsramp.com/harbor/projects/5/
 It can be deployed using the help chart on the server.
 
 ```
+helm repo add opsramp-analytics-apps https://hub.opsramp.com/chartrepo/analytics-apps
 helm repo update
 helm install metered-usage-insight opsramp-analytics-apps/metered-usage-insight
 helm upgrade metered-usage-insight opsramp-analytics-apps/metered-usage-insight
