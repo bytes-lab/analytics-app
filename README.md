@@ -24,10 +24,11 @@ To run the metered-usage-insights app locally, you’ll want to set some environ
 Set the following variables:
 
 -   PLATFORM_ROUTE=analytics-apps (this is required for proper routing to assets when running in portal)
+-   DATA_API_BASE_URL=[https://asura.opsramp.net](https://asura.opsramp.net)
+-   APP_SERVICE_BASE_URL=[http://13.57.187.238:8001/oap-api/v1](http://13.57.187.238:8001/swagger) (analysis api service)
+-   OAP_APP_ID=32a1bc14-c471-46a4-9b0a-835b4b80e58f (this is the installed app id)
 -   INCLUDE_WRAPPER=true (this is required for the sidebar to show)
 -   ON_PROXY=true (this is required for connecting api service)
--   DATA_API_BASE_URL=[https://asura.opsramp.net](https://asura.opsramp.net)
--   APP_SERVICE_BASE_URL=http://13.57.187.238:8001 (analysis api service)
 
 **Setting a variable:** export PLATFORM_ROUTE=analytics-apps
 
