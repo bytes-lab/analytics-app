@@ -120,9 +120,23 @@ It can be deployed using the help chart on the server.
 
 _(Use ```microk8s helm3``` instead of ```helm``` for micro kubernetes)_
 
+For the first time:
+
 ```
 helm repo add opsramp-analytics-apps https://hub.opsramp.com/chartrepo/analytics-apps
 helm repo update
 helm install metered-usage-insight opsramp-analytics-apps/metered-usage-insight
+```
+
+To upgrade:
+
+```
 helm upgrade metered-usage-insight opsramp-analytics-apps/metered-usage-insight
+```
+
+_In case, it does not work, try this_
+
+```
+helm uninstall metered-usage-insight
+helm install metered-usage-insight opsramp-analytics-apps/metered-usage-insight
 ```
