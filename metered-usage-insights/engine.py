@@ -12,7 +12,10 @@ from analytics_sdk.utilities import (
     call_get_requests
 )
 
-# requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
+from utils import get_epoc_from_datetime_string
+
+
+requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
 
 APP_SERVICE_BASE_URL = os.getenv('APP_SERVICE_BASE_URL', '')
 
@@ -22,7 +25,7 @@ def get_tenants():
     msp_id = get_msp_id()
     url = BASE_API_URL + f'/api/v2/tenants/{msp_id}/clients/minimal'
     res = call_get_requests(url, verify=False)
-    print(res, 123)
+
     if not res.ok:
         return []
 
@@ -69,15 +72,18 @@ def get_metric_names():
     return metric_names
 
 
-def get_metric_value(tenant_id, metric_name, function, resource_type=None, start=None, end=None):
+def get_metric_value(tenant_id, metric_name, function, resource_type, start, end):
     url = BASE_API_URL + f'/metricsql/api/v7/tenants/{tenant_id}/metrics'
     metric = f'{metric_name}{{resourceType="{resource_type}"}}' if resource_type else metric_name
     metric = f'{function}({metric})' if function else metric
 
+    start_timestamp = int(get_epoc_from_datetime_string(start))
+    end_timestamp = int(get_epoc_from_datetime_string(end))
+
     params = {
         "query": metric,
-        "start": 1613887988,  # start,
-        "end": 1621509199,  # end
+        "start": start_timestamp,
+        "end": end_timestamp,
         "encode": "true"  # optional
     }
 
@@ -182,6 +188,30 @@ def get_breakdown_resource_type(start_date, end_date):
     return resp
 
 
+def get_excel_data():
+    resp = {
+        'sheets': [
+            {
+                'name': 'Overview',
+                'sections': [
+                    {
+                        'type': 'table',
+                        'title': 'Usage Breakdown by resource tier',
+                        'title-color': 'red',
+                        'start-row': 1,
+                        'start-col': 1,
+                        'data': [
+
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+    return resp
+
+
 def _compute(start_date, end_date):
     resp = {
         'tenants': get_tenants(),
@@ -190,6 +220,7 @@ def _compute(start_date, end_date):
         'breakdown_client': get_breakdown_client(start_date, end_date),
         'breakdown_time': get_breakdown_time(start_date, end_date),
         'breakdown_resource_tier': get_breakdown_resource_tier(start_date, end_date),
+        'excel-data': get_excel_data()
     }
 
     return resp

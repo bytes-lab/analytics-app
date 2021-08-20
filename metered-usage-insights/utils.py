@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from analytics_sdk.utilities import get_run_result
 
 
@@ -29,3 +31,8 @@ def get_breakdown_time(run_id):
 def get_breakdown_resource_tier(run_id):
     run_result = get_run_result(run_id)
     return run_result.get('breakdown_resource_tier', {})
+
+
+def get_epoc_from_datetime_string(iso_datetime_string):
+    timestamp = datetime.strptime(iso_datetime_string, '%Y-%m-%dT%H:%M:%S.%fZ')
+    return timestamp
