@@ -34,5 +34,5 @@ def get_breakdown_resource_tier(run_id):
 
 
 def get_epoc_from_datetime_string(iso_datetime_string):
-    timestamp = datetime.strptime(iso_datetime_string, '%Y-%m-%dT%H:%M:%S.%fZ')
+    timestamp = datetime.strptime(iso_datetime_string, '%Y-%m-%dT%H:%M:%S.%fZ').timestamp()
     return timestamp
