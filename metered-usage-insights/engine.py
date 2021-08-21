@@ -188,11 +188,16 @@ def get_breakdown_resource_type(start_date, end_date):
     return resp
 
 
-def get_excel_data():
+def get_excel_data(data):
+    data_1 = [["Resource Tier", "Usage (Unweighted)", "Usage (Weighted)"]]
+    for key, val in data['breakdown_resource_tier'].items():
+        data_1.append([key.title(), val['unweighted'], val['weighted']])
+
     resp = {
         'sheets': [
             {
-                'name': 'Overview',
+                'title': 'Overview',
+                'header': {},
                 'sections': [
                     {
                         'type': 'table',
@@ -200,9 +205,7 @@ def get_excel_data():
                         'title-color': 'red',
                         'start-row': 1,
                         'start-col': 1,
-                        'data': [
-
-                        ]
+                        'data': data_1
                     }
                 ]
             }
@@ -219,9 +222,11 @@ def _compute(start_date, end_date):
         'breakdown_resource_type': get_breakdown_resource_type(start_date, end_date),
         'breakdown_client': get_breakdown_client(start_date, end_date),
         'breakdown_time': get_breakdown_time(start_date, end_date),
-        'breakdown_resource_tier': get_breakdown_resource_tier(start_date, end_date),
-        'excel-data': get_excel_data()
+        'breakdown_resource_tier': get_breakdown_resource_tier(start_date, end_date)
     }
+
+    excel_data = get_excel_data(resp)
+    resp['excel-data'] = excel_data
 
     return resp
 
