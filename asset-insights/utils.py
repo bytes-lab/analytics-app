@@ -34,4 +34,4 @@ def get_breakdown_resource_composition_public_cloud(run_id):
 #Breakdown by operating system (servers)
 def get_breakdown_by_operating_system(run_id):
     run_result = get_run_result(run_id)
-    return run_result.get('breakdown_operating_system', {})
+    return run_result.get('breakdown_operating_system', {}) 
