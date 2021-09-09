@@ -19,3 +19,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8050
 
 CMD ["gunicorn", "--timeout=10000", "--workers=2", "app:server", "-b 0.0.0.0:8050"]
+
