@@ -419,7 +419,7 @@ def compute():
     analysis_id = params.get('analysis_id', None)   
 
     # analysis run
-    url = APP_SERVICE_BASE_URL + '/oap-api/v1/analysis-runs/'
+    url = APP_SERVICE_BASE_URL + '/analysis-runs/'
     data = {
         'analysis': analysis_id,
         'params': json.dumps(params),
@@ -433,7 +433,7 @@ def compute():
     flask.session[run_id] = json.dumps(result.copy())   
 
     # update the run
-    url = APP_SERVICE_BASE_URL + f'/oap-api/v1/analysis-runs/{run_id}/'   
+    url = APP_SERVICE_BASE_URL + f'/analysis-runs/{run_id}/'
     data = {
         'date_completed': datetime.now().strftime('%Y-%m-%dT%H:%M:%S'),
         'result': json.dumps(result.copy())
