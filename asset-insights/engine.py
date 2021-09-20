@@ -436,12 +436,12 @@ def get_excel_data(data):
 def _compute(start_date, end_date):
 
     resp = {
-        #'managed_resources': get_managed_resources(),
-        #'breakdown_time': get_managed_resources_breakdown_time(start_date, end_date),
-        #'breakdown_top_resource_type': get_breakdown_top_resource_type(start_date, end_date),
+        'managed_resources': get_managed_resources(),
+        'breakdown_time': get_managed_resources_breakdown_time(start_date, end_date),
+        'breakdown_top_resource_type': get_breakdown_top_resource_type(start_date, end_date),
         'breakdown_top_clients_managed_resource': get_breakdown_top_clients_total_managed_resources(start_date, end_date),
         'public_cloud_data_center': get_breakdown_public_cloud_data_center(start_date, end_date),
-        #'resource_composition': get_breakdown_resource_composition_public_cloud(start_date, end_date),
+        'resource_composition': get_breakdown_resource_composition_public_cloud(start_date, end_date),
         'breakdown_operating_system': get_breakdown_by_operating_system(start_date, end_date)
     }
     
