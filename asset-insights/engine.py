@@ -14,6 +14,9 @@ from analytics_sdk.utilities import (
     call_post_requests,
     get_jwt_token
 )
+
+from utils import get_epoc_from_datetime_string
+
 requests_cache.install_cache('opsramp_cache', backend='sqlite', expire_after=3600*300, allowable_methods=("GET", "POST"))
 
 APP_SERVICE_BASE_URL = os.getenv('APP_SERVICE_BASE_URL', '')
@@ -51,15 +54,19 @@ def get_metric_names():
 
     return metric_names
 
-def get_metric_value(tenant_id, metric_name, function, resource_type=None, start=None, end=None):
+def get_metric_value(tenant_id, metric_name, function, resource_type, start, end):
     url = BASE_API_URL + f'/metricsql/api/v7/tenants/{tenant_id}/metrics'
     metric = f'{metric_name}{{resourceType="{resource_type}"}}' if resource_type else metric_name
     metric = f'{function}({metric})' if function else metric
+    
+    start_timestamp = int(get_epoc_from_datetime_string(start))
+    end_timestamp = int(get_epoc_from_datetime_string(end))
+    
     params = {
         "query": metric,
-        "start": 1609459200, 
-        "end": 1623838185,
-        "step": 86400,
+        "start": start_timestamp,
+        "end": end_timestamp,
+        "step": 86400, #not present in metered usage
         "encode": "true"  
     }
     
@@ -398,18 +405,49 @@ def get_breakdown_by_operating_system(start_date, end_date):
     
     return resp
 
+#Get Excel Data
+def get_excel_data(data):
+    data_1 = [["Resource Tier", "Usage (Unweighted)", "Usage (Weighted)"]]
+    for key, val in data['breakdown_time'].items():
+        data_1.append([key.title(), val['unweighted'], val['weighted']])
+
+    resp = {
+        'sheets': [
+            {
+                'title': 'Overview',
+                'header': {},
+                'sections': [
+                    {
+                        'type': 'table',
+                        'title': 'Usage Breakdown by resource tier',
+                        'title-color': 'red',
+                        'start-row': 1,
+                        'start-col': 1,
+                        'data': data_1
+                    }
+                ]
+            }
+        ]
+    }
+
+    return resp
+
 
 def _compute(start_date, end_date):
 
     resp = {
-        'managed_resources': get_managed_resources(),
-        'breakdown_time': get_managed_resources_breakdown_time(start_date, end_date),
-        'breakdown_top_resource_type': get_breakdown_top_resource_type(start_date, end_date),
+        #'managed_resources': get_managed_resources(),
+        #'breakdown_time': get_managed_resources_breakdown_time(start_date, end_date),
+        #'breakdown_top_resource_type': get_breakdown_top_resource_type(start_date, end_date),
         'breakdown_top_clients_managed_resource': get_breakdown_top_clients_total_managed_resources(start_date, end_date),
         'public_cloud_data_center': get_breakdown_public_cloud_data_center(start_date, end_date),
-        'resource_composition': get_breakdown_resource_composition_public_cloud(start_date, end_date),
+        #'resource_composition': get_breakdown_resource_composition_public_cloud(start_date, end_date),
         'breakdown_operating_system': get_breakdown_by_operating_system(start_date, end_date)
     }
+    
+    excel_data = get_excel_data(resp)
+    resp['excel-data'] = excel_data
+
     return resp
     
 def compute():
@@ -432,8 +470,8 @@ def compute():
     result = _compute(start_date, end_date)
     flask.session[run_id] = json.dumps(result.copy())   
 
-    # update the run
-    url = APP_SERVICE_BASE_URL + f'/analysis-runs/{run_id}/'
+    # update the run  
+    url = APP_SERVICE_BASE_URL + f'/analysis-runs/{run_id}/' 
     data = {
         'date_completed': datetime.now().strftime('%Y-%m-%dT%H:%M:%S'),
         'result': json.dumps(result.copy())
