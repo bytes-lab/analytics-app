@@ -123,20 +123,30 @@ _(Use ```microk8s helm3``` instead of ```helm``` for micro kubernetes)_
 For the first time:
 
 ```
-helm repo add opsramp-analytics-apps https://hub.opsramp.com/chartrepo/analytics-apps
-helm repo update
-helm install metered-usage-insight opsramp-analytics-apps/metered-usage-insight
+export HELM_EXPERIMENTAL_OCI = 1
+helm chart save metered-usage-insight-0.1.0.tgz hub.opsramp.com/analytics-apps/metered-usage-insight
+helm chart push hub.opsramp.com/analytics-apps/metered-usage-insight:0.1.0
+```
+
+```
+alias helm="microk8s helm3"
+helm chart pull hub.opsramp.com/analytics-apps/metered-usage-insight:0.1.0
+helm chart export  hub.opsramp.com/analytics-apps/metered-usage-insight:0.1.0
+helm install metered-usage-insight ./metered-usage-insight
+
 ```
 
 To upgrade:
 
+- pull and export the chart again.
+
 ```
-helm upgrade metered-usage-insight opsramp-analytics-apps/metered-usage-insight
+helm upgrade metered-usage-insight ./metered-usage-insight
 ```
 
 _In case, it does not work, try this_
 
 ```
 helm uninstall metered-usage-insight
-helm install metered-usage-insight opsramp-analytics-apps/metered-usage-insight
+helm install metered-usage-insight ./metered-usage-insight
 ```
