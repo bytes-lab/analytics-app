@@ -123,17 +123,17 @@ _(Use ```microk8s helm3``` instead of ```helm``` for micro kubernetes)_
 For the first time:
 
 ```
-export HELM_EXPERIMENTAL_OCI = 1
+export HELM_EXPERIMENTAL_OCI=1
 helm chart save metered-usage-insight-0.1.0.tgz hub.opsramp.com/analytics-apps/metered-usage-insight
 helm chart push hub.opsramp.com/analytics-apps/metered-usage-insight:0.1.0
 ```
 
 ```
 alias helm="microk8s helm3"
+export HELM_EXPERIMENTAL_OCI=1
 helm chart pull hub.opsramp.com/analytics-apps/metered-usage-insight:0.1.0
-helm chart export  hub.opsramp.com/analytics-apps/metered-usage-insight:0.1.0
+helm chart export hub.opsramp.com/analytics-apps/metered-usage-insight:0.1.0
 helm install metered-usage-insight ./metered-usage-insight
-
 ```
 
 To upgrade:
