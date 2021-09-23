@@ -1,5 +1,6 @@
-from analytics_sdk.utilities import get_run_result
+from datetime import datetime
 
+from analytics_sdk.utilities import get_run_result
 
 #get total managed resources
 def get_managed_resources(run_id):
@@ -34,4 +35,9 @@ def get_breakdown_resource_composition_public_cloud(run_id):
 #Breakdown by operating system (servers)
 def get_breakdown_by_operating_system(run_id):
     run_result = get_run_result(run_id)
-    return run_result.get('breakdown_operating_system', {})
+    return run_result.get('breakdown_operating_system', {}) 
+
+#Get Epoc From Date And Time String
+def get_epoc_from_datetime_string(iso_datetime_string):
+    timestamp = datetime.strptime(iso_datetime_string, '%Y-%m-%dT%H:%M:%S.%fZ').timestamp()
+    return timestamp
