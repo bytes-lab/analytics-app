@@ -21,7 +21,6 @@ APP_SERVICE_BASE_URL = os.getenv('APP_SERVICE_BASE_URL', '')
 
 
 def get_tenants():
-    flask.session['test-file'] = "New file"
     msp_id = get_msp_id()
     url = BASE_API_URL + f'/api/v2/tenants/{msp_id}/clients/minimal'
     res = call_get_requests(url, verify=False)
@@ -45,7 +44,7 @@ def get_resource_types():
             continue
 
         resource_types += res.json()['data']
-    
+
     return list(set(resource_types))
 
 

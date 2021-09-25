@@ -3,16 +3,6 @@
 
 ### Setup/Installation (Local)
 
-This app requires 3 repos:
-
--   [Analytics-apps](https://github.com/opsramp/analytics-apps) - a collection of python apps and a react “front page”
--   [Analytics-sdk](https://github.com/opsramp/analytics-sdk) - this is a toolkit used by analytics-apps
--   [Analysis-wrapper](https://github.com/opsramp/analysis-wrapper) - this is the sidebar, made with React
-
-Pull the latest versions of each repo. (master branch)
-
-You will be running the analytics-apps application, the others are used as dependencies.
-
 ### Python Version
 
 This app is using python 3.x and pip3. Recommended to use virtual env.
@@ -117,10 +107,6 @@ extra_hosts:
 It is pushed to a [Harbor Repository](https://hub.opsramp.com/harbor/projects/5/repositories) and a [helm chart](https://hub.opsramp.com/harbor/projects/5/helm-charts) is ready for it.
 
 It can be deployed using the help chart on the server.
-
-_(Use ```microk8s helm3``` instead of ```helm``` for micro kubernetes)_
-
-For the first time:
 
 ```
 export HELM_EXPERIMENTAL_OCI=1
