@@ -1,0 +1,6 @@
+apiVersion: v2
+name: metered-usage-insight
+description: A Helm chart for OpsRamp Analytics App (metered-usage-insight)
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
