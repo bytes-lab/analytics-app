@@ -5,7 +5,7 @@
 
 ### Python Version
 
-This app is using python 3.x and pip3. Recommended to use virtual env.
+This app is using python 3.x and pip3. Recommended to use a virtual env.
 
 ### Setting environment variables
 
